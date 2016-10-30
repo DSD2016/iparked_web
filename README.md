@@ -1,17 +1,15 @@
 # iParked web application
----
 
 iParked uses Bluetooth LE beacons to help you find your car in GPS denied parking lot such as an underground garage.
 
 ## Contents
----
 * [Environment setup](#installation)
   * [Windows](#windows)
   * [Linux](#linux)
 * [Project setup](#project-setup) 
 
 ## Installation
----
+
 ### Windows
 
 __A)__ Install Docker from [docker.com](https://www.docker.com/)
