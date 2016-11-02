@@ -12,6 +12,8 @@ iParked uses Bluetooth LE beacons to help you find your car in GPS denied parkin
 
 ### Windows
 
+It is suggested to have 
+
 __A)__ Install Docker from [docker.com](https://www.docker.com/)
 
 ### Linux
@@ -58,14 +60,32 @@ applications:
 Change INSTALL_AEROSPIKE_EXTENSION variable to false in workspace/Dockerfile
 ```
 # ARG INSTALL_AEROSPIKE_EXTENSION=true
-# ARG INSTALL_AEROSPIKE_EXTENSION=false
+ARG INSTALL_AEROSPIKE_EXTENSION=false
 ```
 
 #### Start docker
+
+On Linux do this
 ```
 sudo gpasswd -a ${USER} docker
 sudo systemctl start docker
+```
+If docker won't start, log out and log in.
+
+In laradock\ folder start docker image
+```
 docker-compose up -d nginx mysql
+```
+
+#### Start bash in workspace
+```
+cd workspace
+
+# for Linux
+docker-compose exec workspace bash
+
+# for Windows
+docker exec -it {workspace-container-id} bash
 ```
 
 #### Install missing php libraries
