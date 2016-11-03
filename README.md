@@ -99,3 +99,9 @@ mkdir bootstrap/cache
 php artisan cache:clear 
 composer dump-autoload
 ```
+
+#### Create env file and generate app key
+```
+cp .env.example .env
+./artisan key:generate
+```
