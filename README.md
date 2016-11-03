@@ -12,9 +12,8 @@ iParked uses Bluetooth LE beacons to help you find your car in GPS denied parkin
 
 ### Windows
 
-It is suggested to have 
-
-__A)__ Install Docker from [docker.com](https://www.docker.com/)
+__A)__ It is suggested to have bash for Windows. If that works you can just follow Linux instructions for Ubuntu.
+__B)__ Install Docker for Windows from [docker.com](https://www.docker.com/)
 
 ### Linux
 
