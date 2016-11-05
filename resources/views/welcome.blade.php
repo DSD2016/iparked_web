@@ -1,91 +1,288 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
 
-        <title>Laravel</title>
+<head>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="iparked DSD team 2016">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+    <title>iParked - find you car easily</title>
 
-            .full-height {
-                height: 100vh;
-            }
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+    <!-- Styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/magnific-popup.css" rel="stylesheet">
+    <link href="css/iparked.css" rel="stylesheet">
 
-            .position-ref {
-                position: relative;
-            }
+</head>
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+<body>
 
-            .content {
-                text-align: center;
-            }
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">iParked</a>
+            </div>
 
-            .title {
-                font-size: 84px;
-            }
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="page-scroll" href="#about">About</a></li>
+                    <li><a class="page-scroll" href="#download">Download</a></li>
+                    <li><a class="page-scroll" href="#team">Team</a></li>
+                    <li><a class="page-scroll" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1 id="homeHeading">Find your car easily</h1>
+                <hr>
+                <p>You forgor where you parked your car? Our application will help you find it. It works both indoor and outdoor by using modern Bluetooth Low Energy beacons and a little bit of our magic.</p>
+                <a href="#about" class="btn btn-primary btn-xl page-scroll">Tell me more</a>
+            </div>
+        </div>
+    </header>
+
+
+    <section class="bg-primary" id="about">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">About text</h2>
+                    <hr class="light">
+                    <p class="text-faded">Hodor hodor HODOR! Hodor HODOR hodor, hodor hodor hodor... Hodor hodor hodor. Hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor, hodor, hodor hodor. Hodor. Hodor hodor hodor, hodor, hodor hodor. Hodor, hodor hodor hodor hodor! Hodor. Hodor HODOR hodor, hodor hodor... Hodor hodor hodor, hodor. Hodor hodor, hodor. Hodor hodor? Hodor, hodor. Hodor. Hodor, hodor hodor - hodor.</p>
+                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">hodor</a>
                 </div>
-            @endif
+            </div>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-diamond text-white sr-icons"></i>
+                        <h3>hodor</h3>
+                        <p class="text-muted">Hodor hodor HODOR! Hodor HODOR hodor</p>
+                    </div>
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-paper-plane text-white sr-icons"></i>
+                        <h3>hodor</h3>
+                        <p class="text-muted">Hodor hodor HODOR! Hodor HODOR hodor</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-newspaper-o text-white sr-icons"></i>
+                        <h3>hodor</h3>
+                        <p class="text-muted">Hodor hodor HODOR! Hodor HODOR hodor</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-heart text-white sr-icons"></i>
+                        <h3>hodor</h3>
+                        <p class="text-muted">Hodor hodor HODOR! Hodor HODOR hodor</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="bg-dark" id="download">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Download text</h2>
+                    <hr class="light">
+                    <p class="text-faded">Hodor hodor - hodor - hodor; hodor hodor... Hodor hodor hodor hodor! Hodor hodor...</p>
+                    <a href="#" class="page-scroll btn btn-default btn-xl sr-button">Google Play link</a>
                 </div>
             </div>
         </div>
-    </body>
+    </section>
+
+    <section class="" id="team">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Team text</h2>
+                    <hr class="light">
+                    <p>Hodor hodor - hodor - hodor; hodor hodor... Hodor hodor hodor hodor! Hodor hodor...</p>
+                </div>
+            </div>
+
+            <div class="row no-gutter">
+
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box">
+                    <img src="img/team/thumbnails/generic.jpg" class="img-responsive center-block" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Team role
+                            </div>
+                            <div class="project-name">
+                                Member name
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box">
+                    <img src="img/team/thumbnails/generic.jpg" class="img-responsive center-block" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Team role
+                            </div>
+                            <div class="project-name">
+                                Member name
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box">
+                    <img src="img/team/thumbnails/generic.jpg" class="img-responsive center-block" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Team role
+                            </div>
+                            <div class="project-name">
+                                Member name
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Team text</h2>
+                    <hr class="light">
+                    <p>Hodor hodor - hodor - hodor; hodor hodor... Hodor hodor hodor hodor! Hodor hodor...</p>
+                </div>
+            </div>
+
+            <div class="row no-gutter">
+
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box">
+                    <img src="img/team/thumbnails/generic.jpg" class="img-responsive center-block" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Team role
+                            </div>
+                            <div class="project-name">
+                                Member name
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box">
+                    <img src="img/team/thumbnails/generic.jpg" class="img-responsive center-block" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Team role
+                            </div>
+                            <div class="project-name">
+                                Member name
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box">
+                    <img src="img/team/thumbnails/generic.jpg" class="img-responsive center-block" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Team role
+                            </div>
+                            <div class="project-name">
+                                Member name
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Find us on the GitHub</h2>
+                    <hr class="primary">
+                    <p>Hodor hodor hodor hodor</p>
+                </div>
+
+                <div class="col-lg-4 col-lg-offset-2 text-center">
+                    <i class="fa fa-phone fa-3x sr-contact"></i>
+                    <p>123-456-678-9</p>
+                </div>
+
+                <div class="col-lg-4 text-center">
+                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+                    <p><a href="mailto:info@iparked.com">info@iparked.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Javascript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/scrollreveal.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/creative.js"></script>
+
+
+</body>
+
 </html>
