@@ -103,5 +103,6 @@ composer dump-autoload
 #### Create env file and generate app key
 ```
 cp .env.example .env
+sudo chmod +x artisan
 ./artisan key:generate
 ```
