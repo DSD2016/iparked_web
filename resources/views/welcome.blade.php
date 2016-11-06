@@ -50,7 +50,7 @@
     </nav>
 
 
-    <header>
+    <header id="page-top">
         <div class="header-content">
             <div class="header-content-inner">
                 <h1 id="homeHeading">Find your car easily</h1>
@@ -70,7 +70,7 @@
                     <h2 class="section-heading">About text</h2>
                     <hr class="light">
                     <p class="text-faded">Hodor hodor HODOR! Hodor HODOR hodor, hodor hodor hodor... Hodor hodor hodor. Hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor, hodor, hodor hodor. Hodor. Hodor hodor hodor, hodor, hodor hodor. Hodor, hodor hodor hodor hodor! Hodor. Hodor HODOR hodor, hodor hodor... Hodor hodor hodor, hodor. Hodor hodor, hodor. Hodor hodor? Hodor, hodor. Hodor. Hodor, hodor hodor - hodor.</p>
-                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">hodor</a>
+                    <a href="javascript:void(0)" class="page-scroll btn btn-default btn-xl sr-button">hodor</a>
                 </div>
             </div>
 
@@ -118,7 +118,7 @@
                     <h2 class="section-heading">Download text</h2>
                     <hr class="light">
                     <p class="text-faded">Hodor hodor - hodor - hodor; hodor hodor... Hodor hodor hodor hodor! Hodor hodor...</p>
-                    <a href="#" class="page-scroll btn btn-default btn-xl sr-button">Google Play link</a>
+                    <a href="javascript:void(0)" class="page-scroll btn btn-default btn-xl sr-button">Google Play link</a>
                 </div>
             </div>
         </div>
