@@ -40,8 +40,8 @@
 
             <!-- Logo -->
             <a href="index2.html" class="logo">
-                <span class="logo-mini">i<b>P</b></span>
-                <span class="logo-lg">i<b>Parked</b></span>
+                <span class="logo-mini"><b>iP</b></span>
+                <span class="logo-lg"><b>iParked</b></span>
             </a>
 
 
@@ -59,7 +59,9 @@
                         <li class="dropdown user user-menu">
 
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <!--
                                 <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                -->
                                 <span class="hidden-xs">Hodor</span>
                             </a>
 
@@ -67,30 +69,13 @@
 
                                 <!-- User image -->
                                 <li class="user-header">
+                                    <!--
                                     <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                    -->
                                     <p>
                                         Alexander Pierce - Web Developer
                                         <small>Member since Nov. 2012</small>
                                     </p>
-                                </li>
-
-                                <!-- Menu Body -->
-                                <li class="user-body">
-                                    <div class="row">
-
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Followers</a>
-                                        </div>
-
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Sales</a>
-                                        </div>
-
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Friends</a>
-                                        </div>
-
-                                    </div>
                                 </li>
 
                                 <!-- Menu Footer-->
@@ -118,11 +103,12 @@
             <section class="sidebar">
 
                 <!-- Sidebar user panel -->
-                <div class="user-panel">
+                <div class="user-panel" style="min-height: 42px">
+                    <!--
                     <div class="pull-left image">
                         <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
-
+                    -->
                     <div class="pull-left info">
                         <p>Hodor</p>
                     </div>
@@ -140,7 +126,7 @@
 
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-pie-chart"></i>
+                            <i class="ion ion-social-rss"></i>
                             <span>Beacon management</span>
                             <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
@@ -156,7 +142,7 @@
 
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-pie-chart"></i>
+                            <i class="ion ion-social-buffer"></i>
                             <span>Garage management</span>
                             <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
@@ -172,7 +158,7 @@
 
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-pie-chart"></i>
+                            <i class="ion ion-model-s"></i>
                             <span>User management</span>
                             <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
@@ -212,58 +198,44 @@
 
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                    <div class="col-lg-3 col-xs-6">
+                    <div class="col-lg-4 col-xs-4">
                         <!-- small box -->
                         <div class="small-box bg-aqua">
                         <div class="inner">
-                        <h3>150</h3>
+                        <h3>223</h3>
 
-                        <p>New Orders</p>
+                        <p>Active beacons</p>
                         </div>
                         <div class="icon">
-                        <i class="ion ion-bag"></i>
+                        <i class="ion ion-social-rss"></i>
                         </div>
                         <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-xs-6">
-                        <div class="small-box bg-green">
+                    <div class="col-lg-4 col-xs-4">
+                        <div class="small-box bg-aqua">
                         <div class="inner">
-                        <h3>53<sup style="font-size: 20px">%</sup></h3>
+                        <h3>22</h3>
 
-                        <p>Bounce Rate</p>
+                        <p>Levels</p>
                         </div>
                         <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
+                        <i class="ion ion-social-buffer"></i>
                         </div>
                         <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-xs-6">
-                        <div class="small-box bg-yellow">
+                    <div class="col-lg-4 col-xs-4">
+                        <div class="small-box bg-aqua">
                         <div class="inner">
-                        <h3>44</h3>
+                        <h3>5</h3>
 
-                        <p>User Registrations</p>
+                        <p>Garages</p>
                         </div>
                         <div class="icon">
-                        <i class="ion ion-person-add"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-xs-6">
-                        <div class="small-box bg-red">
-                        <div class="inner">
-                        <h3>65</h3>
-
-                        <p>Unique Visitors</p>
-                        </div>
-                        <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
+                        <i class="ion ion-model-s"></i>
                         </div>
                         <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
