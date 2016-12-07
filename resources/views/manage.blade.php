@@ -212,7 +212,6 @@
                         <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-
                     <div class="col-lg-4 col-xs-4">
                         <div class="small-box bg-aqua">
                         <div class="inner">
@@ -226,18 +225,17 @@
                         <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-
                     <div class="col-lg-4 col-xs-4">
                         <div class="small-box bg-aqua">
-                        <div class="inner">
-                        <h3>5</h3>
+                            <div class="inner">
+                                <h3>5</h3>
 
-                        <p>Garages</p>
-                        </div>
-                        <div class="icon">
-                        <i class="ion ion-model-s"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                <p>Garages</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-model-s"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
