@@ -15,6 +15,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('manage/', function () {
-    return view('manage');
+Route::get('dashboard/', function () {
+    return View::make('dashboard');
+});
+
+Route::get('garages/', function () {
+    return View::make('garages');
+});
+
+Route::get('beacons/', function () {
+    return View::make('beacons');
+});
+
+Route::get('user/', function () {
+    return View::make('user');
+});
+
+Route::get('documentation/', function () {
+    return View::make('documentation');
 });

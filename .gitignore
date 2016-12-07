@@ -15,3 +15,9 @@ bootstrap/cache/
 .rocketeer/
 
 .sass-cache
+
+.fuse*
+
+artisan
+
+composer.lock
