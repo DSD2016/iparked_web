@@ -12,23 +12,23 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return View::make('frontpage.frontpage');
 });
 
 Route::get('dashboard/', function () {
-    return View::make('dashboard');
+    return View::make('manage.dashboard');
 });
 
 Route::get('garages/', function () {
-    return View::make('garages');
+    return View::make('manage.garages');
 });
 
 Route::get('beacons/', function () {
-    return View::make('beacons');
+    return View::make('manage.beacons');
 });
 
 Route::get('user/', function () {
-    return View::make('user');
+    return View::make('manage.user');
 });
 
 Route::get('documentation/', function () {

@@ -3,11 +3,7 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="iparked DSD team 2016">
+    @include('includes.head')
 
     <title>iParked - find you car easily</title>
 
@@ -272,41 +268,9 @@
         </div>
     </section>
 
-
-    <!-- Modal for login and registration -->
-    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="favoritesModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close"
-                    data-dismiss="modal"
-                    aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"
-                    id="favoritesModalLabel">The Sun Also Rises</h4>
-                </div>
-                <div class="modal-body">
-                    <p>
-                    Please confirm you would like to add
-                    <b><span id="fav-title">The Sun Also Rises</span></b>
-                    to your favorites list.
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button"
-                    class="btn btn-default"
-                    data-dismiss="modal">Close</button>
-                    <span class="pull-right">
-                    <button type="button" class="btn btn-primary">
-                    Add to Favorites
-                    </button>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+    @include('modals.login')
+    @include('modals.register')
+    @include('modals.forgotPassword')
 
     <!-- Javascript -->
     <script src="js/jquery.min.js"></script>
