@@ -30,3 +30,7 @@ Route::get('beacons/', function () {
 Route::get('user/', function () {
     return View::make('manage.user');
 });
+
+$s = 'social.';
+Route::get('/social/redirect/{provider}', ['as' => $s . 'redirect', 'uses' => 'Auth\SocialController@getSocialRedirect']);
+Route::get('/social/handle/{provider}', ['as' => $s . 'handle', 'uses' => 'Auth\SocialController@getSocialHandle']);

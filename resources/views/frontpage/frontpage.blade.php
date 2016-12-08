@@ -14,6 +14,7 @@
 
     <!-- Styles -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-social.css" rel="stylesheet">
     <link href="css/magnific-popup.css" rel="stylesheet">
     <link href="css/iparked.css" rel="stylesheet">
 

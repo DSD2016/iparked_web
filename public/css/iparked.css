@@ -403,4 +403,7 @@ img::-moz-selection {
 body {
   webkit-tap-highlight-color: #595959; }
 
+.pt-10 {
+    padding-top: 20px; }
+
 /*# sourceMappingURL=iparked.css.map */
