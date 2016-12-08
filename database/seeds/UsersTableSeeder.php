@@ -1,18 +1,14 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Role;
-use App\Models\User;
 
-class UserSeeder extends Seeder{
+class UsersTableSeeder extends Seeder{
 
     public function run(){
         DB::table('users')->delete();
 
-        $adminRole = Role::whereName('administrator')->first();
-        $userRole = Role::whereName('user')->first();
 
-        $user = User::create(array(
+        DB::table('users')->insert([
             'first_name'    => 'John',
             'last_name'     => 'Doe',
             'email'         => 'j.doe@codingo.me',
@@ -20,9 +16,9 @@ class UserSeeder extends Seeder{
             'password'      => Hash::make('password'),
             'token'         => str_random(64),
             'activated'     => true
-        ));
+        ]);
 
-        $user = User::create(array(
+        DB::table('users')->insert([
             'first_name'    => 'Jane',
             'last_name'     => 'Doe',
             'email'         => 'jane.doe@test.com',
@@ -30,6 +26,6 @@ class UserSeeder extends Seeder{
             'password'      => Hash::make('janesPassword'),
             'token'         => str_random(64),
             'activated'     => true
-        ));
+        ]);
     }
 }
