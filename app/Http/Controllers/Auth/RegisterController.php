@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use Validator;
-use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\Role;
 
 class RegisterController extends Controller
 {
@@ -27,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -36,7 +37,9 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+
         $this->middleware('guest');
+
     }
 
     /**
@@ -47,11 +50,26 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
+
+        return Validator::make($data,
+            [
+                'first_name'            => 'required',
+                'last_name'             => 'required',
+                'email'                 => 'required|email|unique:users',
+                'password'              => 'required|min:6|max:20',
+                'password_confirmation' => 'required|same:password'
+            ],
+            [
+                'first_name.required'   => 'First Name is required',
+                'last_name.required'    => 'Last Name is required',
+                'email.required'        => 'Email is required',
+                'email.email'           => 'Email is invalid',
+                'password.required'     => 'Password is required',
+                'password.min'          => 'Password needs to have at least 6 characters',
+                'password.max'          => 'Password maximum length is 20 characters'
+            ]
+            );
+
     }
 
     /**
@@ -62,10 +80,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+
+        $user =  User::create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'company' => $data['company'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'token' => str_random(64),
+            'activated' => true
         ]);
+
+        $role = Role::whereName('user')->first();
+        $user->assignRole($role);
+
+        return $user;
+
     }
+
 }
