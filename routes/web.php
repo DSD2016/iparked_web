@@ -30,7 +30,3 @@ Route::get('beacons/', function () {
 Route::get('user/', function () {
     return View::make('manage.user');
 });
-
-Route::get('documentation/', function () {
-    return View::make('documentation');
-});

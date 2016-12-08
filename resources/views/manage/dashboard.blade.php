@@ -1,4 +1,4 @@
-@extends('manage.manage')
+@extends('manage.includes.manage')
 
 @section('content')
 <!-- Page content -->
