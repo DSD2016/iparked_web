@@ -299,19 +299,42 @@
                 })
 
                 .done(function(data) {
-                    $('#register-modal').modal('hide');
+                    window.open('/dashboard','_self')
                 })
 
                 .fail(function(data) {
-                    $.each(data.responseJSON, function (key, value) {
-                        var input = '#register-form input[email=' + key + ']';
-                        $(input + '+small').text(value);
-                        $(input).parent().addClass('has-error');
-                    });
                 });
             });
 
-        })
+            $(document).on('submit', '#login-form', function(e) {
+                console.log('a');
+                e.preventDefault();
+
+                $('input+small').text('');
+                $('input').parent().removeClass('has-error');
+
+                $.ajax({
+                    method: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    dataType: "json"
+                })
+
+                .done(function(data) {
+                    if (data['loggedin']=='true') {
+                        window.open('/dashboard','_self')
+                    } else {
+                        // write login error
+                    }
+                })
+
+                .fail(function(data) {
+                    console.log('c');
+                });
+            });
+
+        });
+
     </script>
 
 

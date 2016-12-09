@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+            <form id="login-form" class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -21,7 +21,7 @@
 
                     <div style="padding-bottom: 10px;">
                         <label for="pass">Password</label>
-                        <input class="form-control" type="password" name="pass" placeholder="Password">
+                        <input class="form-control" type="password" name="password" placeholder="Password">
                     </div>
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">

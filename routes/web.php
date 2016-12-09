@@ -17,6 +17,20 @@ Route::group(['middleware' => ['web']], function() {
         return View::make('frontpage.frontpage');
     });
 
+    Route::post('/register', [
+        'uses' => 'Auth\RegisterController@postRegister',
+        'as' => 'register'
+    ]);
+
+    Route::post('/login', [
+        'uses' => 'Auth\LoginController@postLogin',
+        'as' => 'login'
+    ]);
+
+});
+
+Route::group(['middleware' => ['auth']], function() {
+
     Route::get('dashboard/', function () {
         return View::make('manage.dashboard');
     });
@@ -33,8 +47,4 @@ Route::group(['middleware' => ['web']], function() {
         return View::make('manage.user');
     });
 
-    Route::post('/register', [
-        'uses' => 'Auth\RegisterController@postRegister',
-        'as' => 'register'
-    ]);
 });

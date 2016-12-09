@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
@@ -27,7 +28,9 @@ class RegisterController extends Controller {
         $user->company = 'as';
         $user->save();
 
-        return "register-success";
+        Auth::login($user);
+
+        return response()->json(array('registered'=>'true'), 200);
     }
 
 }
