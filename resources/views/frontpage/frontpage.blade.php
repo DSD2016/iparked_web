@@ -39,7 +39,13 @@
                     <li><a class="page-scroll" href="#download">Download</a></li>
                     <li><a class="page-scroll" href="#team">Team</a></li>
                     <li><a class="page-scroll" href="#contact">Contact</a></li>
-                    <li><a class="" data-toggle="modal" data-target="#login-modal" href="#">Login</a></li>
+                    @if( Auth::check() )
+                        <li><a href="/dashboard">Manage</a></li>
+                        <li><a href="#" onclick="$.get('/logout', function(){location.reload();});">Logout</a></li>
+                    @else
+                        <li><a data-toggle="modal" data-target="#login-modal" href="#">Login</a></li>
+                    @endif
+
                 </ul>
             </div>
         <!-- /.navbar-collapse -->
@@ -281,6 +287,61 @@
     <script src="js/scrollreveal.min.js"></script>
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/creative.js"></script>
+
+    <script>
+        $(function(){
+
+            $(document).on('submit', '#register-form', function(e) {
+                e.preventDefault();
+
+                $('input+small').text('');
+                $('input').parent().removeClass('has-error');
+
+                $.ajax({
+                    method: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    dataType: "json"
+                })
+
+                .done(function(data) {
+                    window.open('/dashboard','_self')
+                })
+
+                .fail(function(data) {
+                });
+            });
+
+            $(document).on('submit', '#login-form', function(e) {
+                console.log('a');
+                e.preventDefault();
+
+                $('input+small').text('');
+                $('input').parent().removeClass('has-error');
+
+                $.ajax({
+                    method: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    dataType: "json"
+                })
+
+                .done(function(data) {
+                    if (data['loggedin']=='true') {
+                        window.open('/dashboard','_self')
+                    } else {
+                        // write login error
+                    }
+                })
+
+                .fail(function(data) {
+                    console.log('c');
+                });
+            });
+
+        });
+
+    </script>
 
 
 </body>

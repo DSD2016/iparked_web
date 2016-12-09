@@ -1,101 +1,36 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Models\Role;
+use App\User;
 
-class RegisterController extends Controller
-{
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
 
-    use RegistersUsers;
+class RegisterController extends Controller {
 
-    /**
-     * Where to redirect users after login / registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/';
+    public function postRegister(Request $request) {
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
+        // Get data from post request
+        $first_name = $request['first_name'];
+        $last_name = $request['last_name'];
+        $email = $request['email'];
+        $password = bcrypt($request['password']);
 
-        $this->middleware('guest');
+        // Save user to DB
+        $user = new User();
+        $user->first_name = $first_name;
+        $user->last_name = $last_name;
+        $user->email = $email;
+        $user->password = $password;
+        $user->activated = 0;
+        $user->company = 'as';
+        $user->save();
 
-    }
+        Auth::login($user);
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-
-        return Validator::make($data,
-            [
-                'first_name'            => 'required',
-                'last_name'             => 'required',
-                'email'                 => 'required|email|unique:users',
-                'password'              => 'required|min:6|max:20',
-                'password_confirmation' => 'required|same:password'
-            ],
-            [
-                'first_name.required'   => 'First Name is required',
-                'last_name.required'    => 'Last Name is required',
-                'email.required'        => 'Email is required',
-                'email.email'           => 'Email is invalid',
-                'password.required'     => 'Password is required',
-                'password.min'          => 'Password needs to have at least 6 characters',
-                'password.max'          => 'Password maximum length is 20 characters'
-            ]
-            );
-
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
-    {
-
-        $user =  User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'company' => $data['company'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'token' => str_random(64),
-            'activated' => true
-        ]);
-
-        $role = Role::whereName('user')->first();
-        $user->assignRole($role);
-
-        return $user;
-
+        return response()->json(array('registered'=>'true'), 200);
     }
 
 }
