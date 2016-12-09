@@ -17,10 +17,15 @@ class LoginController extends Controller {
         $password = $request['password'];
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            return response()->json(array('loggedin'=>'true', 'email'=>$email, 'password'=>$password), 200);
+            return response()->json(array('loggedin'=>'true'), 200);
         }
 
-        return response()->json(array('loggedin'=>'false', 'email'=>$email, 'password'=>$password), 200);
+        return response()->json(array('loggedin'=>'false'), 200);
 
+    }
+
+    public function getLogout() {
+        Auth::logout();
+        return response()->json(array('loggedout'=>'true'), 200);
     }
 }

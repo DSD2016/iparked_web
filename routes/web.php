@@ -47,4 +47,9 @@ Route::group(['middleware' => ['auth']], function() {
         return View::make('manage.user');
     });
 
+    Route::get('/logout', [
+        'uses' => 'Auth\LoginController@getLogout',
+        'as' => 'logout'
+    ]);
+
 });

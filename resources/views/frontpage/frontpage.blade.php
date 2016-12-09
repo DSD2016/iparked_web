@@ -39,7 +39,13 @@
                     <li><a class="page-scroll" href="#download">Download</a></li>
                     <li><a class="page-scroll" href="#team">Team</a></li>
                     <li><a class="page-scroll" href="#contact">Contact</a></li>
-                    <li><a class="" data-toggle="modal" data-target="#login-modal" href="#">Login</a></li>
+                    @if( Auth::check() )
+                        <li><a href="/dashboard">Manage</a></li>
+                        <li><a href="#" onclick="$.get('/logout', function(){location.reload();});">Logout</a></li>
+                    @else
+                        <li><a data-toggle="modal" data-target="#login-modal" href="#">Login</a></li>
+                    @endif
+
                 </ul>
             </div>
         <!-- /.navbar-collapse -->
