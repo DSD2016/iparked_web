@@ -14,13 +14,21 @@
                 <div class="modal-body">
                     <h1>Login to Your Account</h1><br>
 
-                    <input class="form-control" type="text" name="email" placeholder="Email">
-                    <input class="form-control" style="margin-top: 5px;" type="password" name="pass" placeholder="Password">
+                    <div style="padding-bottom: 10px;">
+                        <label for="email">E-mail</label>
+                        <input class="form-control" type="email" name="email" placeholder="E-mail">
+                    </div>
+
+                    <div style="padding-bottom: 10px;">
+                        <label for="pass">Password</label>
+                        <input class="form-control" type="password" name="pass" placeholder="Password">
+                    </div>
+
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="row" style="padding-top: 10px;">
                         <div class="col-md-4 col-sm-4 col-xs-4">
-                            <a href="{{ route('social.redirect', ['provider' => 'google']) }}" class="btn btn-block btn-social btn-google">
+                            <a href="#" class="btn btn-block btn-social btn-google">
                                 <span class="fa fa-google"></span>
                                 Google
                             </a>
