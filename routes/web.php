@@ -11,22 +11,30 @@
 |
 */
 
-Route::get('/', function () {
-    return View::make('frontpage.frontpage');
-});
+Route::group(['middleware' => ['web']], function() {
 
-Route::get('dashboard/', function () {
-    return View::make('manage.dashboard');
-});
+    Route::get('/', function () {
+        return View::make('frontpage.frontpage');
+    });
 
-Route::get('garages/', function () {
-    return View::make('manage.garages');
-});
+    Route::get('dashboard/', function () {
+        return View::make('manage.dashboard');
+    });
 
-Route::get('beacons/', function () {
-    return View::make('manage.beacons');
-});
+    Route::get('garages/', function () {
+        return View::make('manage.garages');
+    });
 
-Route::get('user/', function () {
-    return View::make('manage.user');
+    Route::get('beacons/', function () {
+        return View::make('manage.beacons');
+    });
+
+    Route::get('user/', function () {
+        return View::make('manage.user');
+    });
+
+    Route::post('/register', [
+        'uses' => 'Auth\RegisterController@postRegister',
+        'as' => 'register'
+    ]);
 });

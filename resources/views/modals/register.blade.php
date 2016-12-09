@@ -2,7 +2,9 @@
 <div class="modal fade" id="register-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
 
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+        <form id="register-form" class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+
+            <input type="hidden" name="_token" value="{{ Session::token() }}">
 
             <div class="modal-content">
 
@@ -19,12 +21,12 @@
                     <div class="row" style="padding-bottom: 10px;">
                         <div class="col-xs-6">
                             <label for="first-name">First Name</label>
-                            <input class="form-control" type="text" name="first-name" placeholder="*Frist Name">
+                            <input class="form-control" type="text" name="first_name" placeholder="*Frist Name">
                         </div>
 
                         <div class="col-xs-6">
                             <label for="last-name">Last Name</label>
-                            <input class="form-control" type="text" name="last-name" placeholder="*Last Name">
+                            <input class="form-control" type="text" name="last_name" placeholder="*Last Name">
                         </div>
                     </div>
 
@@ -38,12 +40,12 @@
                     <div class="row" style="padding-bottom: 10px;">
                         <div class="col-xs-6">
                             <label for="pass">Password</label>
-                            <input class="form-control" type="password" name="pass" placeholder="*Password">
+                            <input class="form-control" type="password" name="password" placeholder="*Password">
                         </div>
 
                         <div class="col-xs-6">
                             <label for="pass-confirm">Confirm Password</label>
-                            <input class="form-control" type="password" name="pass-confirm" placeholder="*Confirm Password">
+                            <input class="form-control" type="password" name="password-confirm" placeholder="*Confirm Password">
                         </div>
                     </div>
 

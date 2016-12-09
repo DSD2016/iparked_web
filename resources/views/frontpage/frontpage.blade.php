@@ -282,6 +282,38 @@
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/creative.js"></script>
 
+    <script>
+        $(function(){
+
+            $(document).on('submit', '#register-form', function(e) {
+                e.preventDefault();
+
+                $('input+small').text('');
+                $('input').parent().removeClass('has-error');
+
+                $.ajax({
+                    method: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    dataType: "json"
+                })
+
+                .done(function(data) {
+                    $('#register-modal').modal('hide');
+                })
+
+                .fail(function(data) {
+                    $.each(data.responseJSON, function (key, value) {
+                        var input = '#register-form input[email=' + key + ']';
+                        $(input + '+small').text(value);
+                        $(input).parent().addClass('has-error');
+                    });
+                });
+            });
+
+        })
+    </script>
+
 
 </body>
 
