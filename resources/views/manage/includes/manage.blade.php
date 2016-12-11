@@ -54,6 +54,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgz9aJOkaTpIOhE-7WL8-_vQy1NxHbyOI&libraries=places"></script>
 
     <script src="admin/plugins/morris/morris.min.js"></script>
     <script src="admin/plugins/sparkline/jquery.sparkline.min.js"></script>
@@ -73,6 +76,36 @@
         var current_location = window.location.pathname.substring(1);
         console.log(current_location);
         $('.sidebar-menu #' + current_location).addClass('active');
+    </script>
+    
+    <script>
+        var map = new google.maps.Map(document.getElementById('map-canvas'),{
+            center:{
+            lat: 27.72,
+            lng: 85.36
+            },
+            zoom:15
+        });
+        
+        google.maps.event.addListener(map, 'click', function(e) {
+            placeMarkerAndPanTo(e.latLng, map);
+        });
+
+        google.maps.event.addListener(marker,'position_changed',function(){
+            var lat = marker.getPosition().lat();
+            var lng = marker.getPosition().lng();
+            $('#lat').val(lat);
+            $('#lng').val(lng);
+        });
+        
+        
+        function placeMarkerAndPanTo(latLng, map) {
+            var marker = new google.maps.Marker({
+            position: latLng, 
+            map: map
+            });
+            map.panTo(latLng);
+        }
     </script>
 
 </body>

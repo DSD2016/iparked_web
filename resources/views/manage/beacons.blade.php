@@ -15,10 +15,8 @@
 
     <!-- Main content -->
     <section class="content">
-
+        <div id="map-canvas" style="width: 50%; height: 50vh;"></div>
     </section>
-
-
 <!-- /.content -->
 </div>
 @stop
