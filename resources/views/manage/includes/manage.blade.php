@@ -55,7 +55,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgz9aJOkaTpIOhE-7WL8-_vQy1NxHbyOI&libraries=places"></script>
 
     <script src="admin/plugins/morris/morris.min.js"></script>
