@@ -59,7 +59,7 @@
             <div class="header-content-inner">
                 <h1 id="homeHeading">Find your car easily</h1>
                 <hr>
-                <p>You forgor where you parked your car? Our application will help you find it. It works both indoor and outdoor by using modern Bluetooth Low Energy beacons and a little bit of our magic.</p>
+                <p>You forgot where you parked your car? Our application will help you find it. It works both indoor and outdoor by using modern Bluetooth Low Energy beacons and a little bit of our magic.</p>
                 <a href="#about" class="btn btn-primary btn-xl page-scroll">Tell me more</a>
             </div>
         </div>
@@ -71,10 +71,15 @@
 
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">About text</h2>
+                    <h2 class="section-heading">How it works</h2>
                     <hr class="light">
-                    <p class="text-faded">Hodor hodor HODOR! Hodor HODOR hodor, hodor hodor hodor... Hodor hodor hodor. Hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor, hodor, hodor hodor. Hodor. Hodor hodor hodor, hodor, hodor hodor. Hodor, hodor hodor hodor hodor! Hodor. Hodor HODOR hodor, hodor hodor... Hodor hodor hodor, hodor. Hodor hodor, hodor. Hodor hodor? Hodor, hodor. Hodor. Hodor, hodor hodor - hodor.</p>
-                    <a href="javascript:void(0)" class="page-scroll btn btn-default btn-xl sr-button">hodor</a>
+                    <p class="text-faded-1">iParked aims to solve the problem of finding car in huge parking lots by offering indoor and outdoor
+                      tracking of the car. There are different types of parking lots, some of them are outdoor in which we are going to use GPS technology.
+                      But in the case of indoor parkings which there is no availability for GPS we devised to use BLE Beacons.
+                      This technology allow us to localize objects in a short range. A set of beacons will be placed in underground garages
+                      and provide tracking process for both car, which has another beacon, and user position. Also we provide a profile
+                      manager for parking administrator in order to controll and managing the Beacons.</p>
+                    <a href="javascript:void(0)" class="page-scroll btn btn-default btn-xl sr-button">Channels</a>
                 </div>
             </div>
 
@@ -82,32 +87,32 @@
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-diamond text-white sr-icons"></i>
-                        <h3>hodor</h3>
-                        <p class="text-muted">Hodor hodor HODOR! Hodor HODOR hodor</p>
+                        <h3>Diamond</h3>
+                        <p class="text-muted">diamond.iparked.dev</p>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-paper-plane text-white sr-icons"></i>
-                        <h3>hodor</h3>
-                        <p class="text-muted">Hodor hodor HODOR! Hodor HODOR hodor</p>
+                        <h3>Telegram</h3>
+                        <p class="text-muted">iparked.dev</p>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-newspaper-o text-white sr-icons"></i>
-                        <h3>hodor</h3>
-                        <p class="text-muted">Hodor hodor HODOR! Hodor HODOR hodor</p>
+                        <h3>newspaper</h3>
+                        <p class="text-muted">iparked.dev</p>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-heart text-white sr-icons"></i>
-                        <h3>hodor</h3>
-                        <p class="text-muted">Hodor hodor HODOR! Hodor HODOR hodor</p>
+                        <h3>Heart</h3>
+                        <p class="text-muted">iparked.heart</p>
                     </div>
                 </div>
             </div>
@@ -119,10 +124,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">Download text</h2>
+                    <h2 class="section-heading">Here is the application on Google Play</h2>
                     <hr class="light">
-                    <p class="text-faded">Hodor hodor - hodor - hodor; hodor hodor... Hodor hodor hodor hodor! Hodor hodor...</p>
-                    <a href="javascript:void(0)" class="page-scroll btn btn-default btn-xl sr-button">Google Play link</a>
+                    <p class="text-faded">Try using the iparked application by clicking on the link below</p>
+                    <a href="https://play.google.com/store/apps/details?id=com.dsd2016.iparked_android" class="page-scroll btn btn-default btn-xl sr-button">Google Play link</a>
                 </div>
             </div>
         </div>
@@ -133,9 +138,9 @@
 
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">Team text</h2>
+                    <h2 class="section-heading">Polimi Members</h2>
                     <hr class="light">
-                    <p>Hodor hodor - hodor - hodor; hodor hodor... Hodor hodor hodor hodor! Hodor hodor...</p>
+                    <p>The team consists of 6 students, three of them are from Polimi</p>
                 </div>
             </div>
 
@@ -143,14 +148,14 @@
 
                 <div class="col-lg-4 col-sm-6">
                     <a class="portfolio-box">
-                    <img src="img/team/thumbnails/generic.jpg" class="img-responsive center-block" alt="">
+                    <img src="img/team/thumbnails/image5.jpg" class="img-responsive center-block" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Team role
+                                Scrum Master
                             </div>
                             <div class="project-name">
-                                Member name
+                                Riccardo
                             </div>
                         </div>
                     </div>
@@ -159,14 +164,14 @@
 
                 <div class="col-lg-4 col-sm-6">
                     <a class="portfolio-box">
-                    <img src="img/team/thumbnails/generic.jpg" class="img-responsive center-block" alt="">
+                    <img src="img/team/thumbnails/image2.jpg" class="img-responsive center-block" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Team role
+                                Developer
                             </div>
                             <div class="project-name">
-                                Member name
+                                Saeed Ektesabi
                             </div>
                         </div>
                     </div>
@@ -175,14 +180,14 @@
 
                 <div class="col-lg-4 col-sm-6">
                     <a class="portfolio-box">
-                    <img src="img/team/thumbnails/generic.jpg" class="img-responsive center-block" alt="">
+                    <img src="img/team/thumbnails/image3.jpg" class="img-responsive center-block" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Team role
+                                Developer
                             </div>
                             <div class="project-name">
-                                Member name
+                                Mohsen Kashfi
                             </div>
                         </div>
                     </div>
@@ -193,9 +198,9 @@
 
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">Team text</h2>
+                    <h2 class="section-heading">FER Members</h2>
                     <hr class="light">
-                    <p>Hodor hodor - hodor - hodor; hodor hodor... Hodor hodor hodor hodor! Hodor hodor...</p>
+                    <p>Below they are FER Students</p>
                 </div>
             </div>
 
@@ -203,14 +208,14 @@
 
                 <div class="col-lg-4 col-sm-6">
                     <a class="portfolio-box">
-                    <img src="img/team/thumbnails/generic.jpg" class="img-responsive center-block" alt="">
+                    <img src="img/team/thumbnails/image4.jpg" class="img-responsive center-block" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Team role
+                                Developer
                             </div>
                             <div class="project-name">
-                                Member name
+                                Hrvoje
                             </div>
                         </div>
                     </div>
@@ -219,14 +224,14 @@
 
                 <div class="col-lg-4 col-sm-6">
                     <a class="portfolio-box">
-                    <img src="img/team/thumbnails/generic.jpg" class="img-responsive center-block" alt="">
+                    <img src="img/team/thumbnails/image1.jpg" class="img-responsive center-block" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Team role
+                                Product Owner
                             </div>
                             <div class="project-name">
-                                Member name
+                                Bruno Vunderl
                             </div>
                         </div>
                     </div>
@@ -235,14 +240,14 @@
 
                 <div class="col-lg-4 col-sm-6">
                     <a class="portfolio-box">
-                    <img src="img/team/thumbnails/generic.jpg" class="img-responsive center-block" alt="">
+                    <img src="img/team/thumbnails/image66.jpg" class="img-responsive center-block" alt="">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded">
-                                Team role
+                                Developer
                             </div>
                             <div class="project-name">
-                                Member name
+                                Mihovil
                             </div>
                         </div>
                     </div>
@@ -259,7 +264,7 @@
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <h2 class="section-heading">Find us on the GitHub</h2>
                     <hr class="primary">
-                    <p>Hodor hodor hodor hodor</p>
+                    <p><a href="https://github.com/DSD2016">https://github.com/DSD2016</p>
                 </div>
 
                 <div class="col-lg-4 col-lg-offset-2 text-center">
