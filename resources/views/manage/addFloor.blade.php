@@ -48,18 +48,29 @@
                             </div>
 
                             <div class="col-md-6" style="padding-bottom: 10px;">
-                                <input class="form-control" type="text" name="floor_lat" placeholder="Latitude" id="Lat">
+                                <input class="form-control" type="text" name="floor_lat" placeholder="Latitude" id="lat" readonly required>
                             </div>
 
                             <div class="col-md-6" style="padding-bottom: 10px;">
-                                <input class="form-control" type="text" name="floor_lng" placeholder="Longitude" id="Lng">
+                                <input class="form-control" type="text" name="floor_lng" placeholder="Longitude" id="lng" readonly required>
                             </div>
 
-                            <input type="hidden" name="angle" value="0.0">
+                            <div class="col-md-6" style="padding-bottom: 10px;">
+                                <input class="form-control" type="text" name="angle" placeholder="Angle" id="angle" readonly required>
+                            </div>
+
+                            <div class="col-md-6" style="padding-bottom: 10px;">
+                                <input class="form-control" type="text" name="size_X" placeholder="Size X" id="sizex" readonly required>
+                            </div>
+                            <div class="col-md-6" style="padding-bottom: 10px;">
+                                <input class="form-control" type="text" name="size_Y" placeholder="Size Y" id="sizey" readonly required>
+                            </div>
+
+                            <div class="col-md-6" style="padding-bottom: 10px;">
+                                <input class="form-control" type="text" name="zoom_level" placeholder="Zoom Level" id="zoom" readonly required>
+                            </div>
+
                             <input type="hidden" name="floor_plan" value="0.0">
-                            <input type="hidden" name="size_X" value="0.0">
-                            <input type="hidden" name="size_Y" value="0.0">
-                            <input type="hidden" name="zoom_level" value="20">
                             <input type="hidden" name="id" >
 
 
@@ -113,60 +124,64 @@
                         iconBase + 'info-i_maps.png',
                         'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'];
 
-        var markers = [ new google.maps.Marker({icon: icons[0], draggable:true}),
-                        new google.maps.Marker({icon: icons[1], draggable:true}),
-                        new google.maps.Marker({icon: icons[2], draggable:true}),
-                        new google.maps.Marker({icon: icons[3], draggable:true})];
+        var markers = [ new google.maps.Marker({icon: icons[0], draggable:true, title: 'North West'}),
+                        new google.maps.Marker({icon: icons[1], draggable:true, title: 'South West'}),
+                        new google.maps.Marker({icon: icons[2], draggable:true, title: 'South East'}),
+                        new google.maps.Marker({icon: icons[3], draggable:true, title: 'North East'})];
     
         google.maps.event.addListener(map, 'click', function(e) {
-            placeMarkerAndPanTo(e.latLng, map);
+            markers[i].setPosition(e.latLng);
+            markers[i].setMap(map);
+            if(i == 3){
+                calculateFloorPlanParameters();
+            }
+            i = (i + 1) % 4;
         });
 
-        function placeMarkerAndPanTo(latLng, map) {
-            markers[i].setPosition(latLng);
-            markers[i].setMap(map);
-            console.log(icons[i]);
-            var lat = markers[i].getPosition().lat();
-            var lng = markers[i].getPosition().lng();
-            i = (i + 1) % 4;
+        function calculateFloorPlanParameters() {
 
+            var dis1 = calculateDistance(markers[3].getPosition().lat(), markers[3].getPosition().lng(),
+                                markers[0].getPosition().lat(), markers[0].getPosition().lng());
+
+            var dis2 = calculateDistance(markers[1].getPosition().lat(), markers[1].getPosition().lng(),
+                                markers[0].getPosition().lat(), markers[0].getPosition().lng());
+
+            $('#lat').val(dis2[3]);
+            $('#lng').val(dis1[4]);
+            $('#angle').val(dis1[2]);
+            $('#sizex').val(dis2[0]);
+            $('#sizey').val(dis1[1]);
+            $('#zoom').val(map.getZoom());
+
+
+           
         }
 
-        function showOnMap(lat, lng, id, height, width, zoom){
-            map.setCenter(new google.maps.LatLng(lat, lng));
+        function calculateDistance(lat1, lon1, lat2, lon2){
 
-                         //Earth’s radius, sphere
-            var R = 6378137;
-            var Pi = 3.14159265359;
+            var R = 6378137; // Radius of earth in KM
 
-             //offsets in meters
-            var dn = height/2.0;
-            var de = width/2.0;
+            var dLat = lat2 * Math.PI / 180 - lat1 * Math.PI / 180;
+            var dLon = lon2 * Math.PI / 180 - lon1 * Math.PI / 180;
 
-             //Coordinate offsets in radians
-            var dLat = ((dn*180)/R)/Pi;
-            var dLon = ((de*180)/(R*Math.cos((Pi*lat)/180.0))) / Pi;
+            var a1 = Math.sin(dLat/2) * Math.sin(dLat/2);
 
-             //OffsetPosition, decimal degrees
-            var lat0 = lat + dLat;
-            var lon0 = lng + dLon;
+            var a2 = Math.cos(lat1 * Math.PI / 180) * Math.cos(lat1 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);
 
-            var lat1 = lat - dLat;
-            var lon1 = lng - dLon;
+            var c1 = 2 * Math.atan2(Math.sqrt(a1), Math.sqrt(1-a1));
+            var c2 = 2 * Math.atan2(Math.sqrt(a2), Math.sqrt(1-a2));
+            var d1 = R * c1;
+            var d2 = R * c2;
+            var angle = Math.atan2(d1,d2)*180 / Math.PI;
+            console.log("------------------");
+            console.log(d1);
+            console.log(d2);
+            console.log(angle);
+            var s1 = (lat2 + lat1)/2;
+            var s2 = (lon2 + lon1)/2;
+            return [d1,d2,angle,s1,s2];
+        }
 
-            var imageBounds = {
-                north: lat0,
-                south: lat1,
-                east:  lon0,
-                west:  lon1
-            };
-
-            floorOverlay = new google.maps.GroundOverlay(
-                'http://iparked_api.dev/api/floorplan/' + id,
-            imageBounds);
-            floorOverlay.setMap(map);
-            map.setZoom(zoom);
-        }     
     </script>
 <script>
     $('#floor').submit(function(e) {
@@ -177,7 +192,7 @@
         console.log(map.getZoom());
         $.ajax({
             type: 'POST',
-            url: '/floor-store/1',
+            url: '/floor-store/{{ $garageId }}',
             dataType : "json",
             data: $('#floor').serialize(),
             cache: false,
@@ -195,7 +210,7 @@
                     processData: false,
                     contentType: false,
                     success: function (data) {
-                        window.location.replace("/floors/1");
+                        window.location.replace("/floors/{{ $garageId }}");
                     },
                 });
             },

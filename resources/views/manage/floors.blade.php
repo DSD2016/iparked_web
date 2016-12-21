@@ -61,11 +61,11 @@
         zoom:2
     });
 
-
     function showOnMap(lat, lng, id, height, width, zoom){
-        map.setCenter(new google.maps.LatLng(lat, lng));
 
-                     //Earth’s radius, sphere
+        map.setCenter(new google.maps.LatLng(lat, lng));
+        
+        //Earth’s radius, sphere
         var R = 6378137;
         var Pi = 3.14159265359;
 
@@ -90,10 +90,7 @@
             east:  lon0,
             west:  lon1
         };
-
-        floorOverlay = new google.maps.GroundOverlay(
-            'http://iparked_api.dev/api/floorplan/' + id,
-        imageBounds);
+        floorOverlay = new google.maps.GroundOverlay('http://iparked_api.dev/api/floorplan/1', imageBounds);
         floorOverlay.setMap(map);
         map.setZoom(zoom);
     }     
