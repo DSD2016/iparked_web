@@ -52,4 +52,11 @@ Route::group(['middleware' => ['auth']], function() {
         'as' => 'logout'
     ]);
 
+    Route::post('/beacons-store', [
+        'uses' => 'BeaconController@store',
+        'as' => 'beacons-store'
+    ]);
+
+    //Route::post('storebeacon', 'BeaconController');
+
 });
