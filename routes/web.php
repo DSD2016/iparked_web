@@ -56,9 +56,8 @@ Route::group(['middleware' => ['auth']], function() {
         'as' => 'floor-store'
     ]);
 
-    Route::get('beacons/', function () {
-        return View::make('manage.beacons');
-    });
+    Route::get('beacons/{garageId}', 'BeaconController@show');
+    
     Route::post('/beacons-store', [
         'uses' => 'BeaconController@store',
         'as' => 'beacons-store'

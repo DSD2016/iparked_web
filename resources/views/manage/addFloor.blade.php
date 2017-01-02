@@ -33,7 +33,7 @@
 
                             <meta name="csrf-token" content="{{ csrf_token() }}">
 
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="api_token" value="{{ Auth::user()->api_token }}">
 
                             <div class="col-md-12" style="padding-bottom: 10px;">
                                 <input class="form-control" type="text" name="floor_name" placeholder="Floor name">

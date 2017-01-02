@@ -32,6 +32,8 @@
                     <td>{{ $floor->major_number }}</td>
                     <td>{{ $floor->floor_timestamp }}</td>
                     <td><button class="btn btn-default" onclick="showOnMap({{ $floor->latitude }}, {{ $floor->longitude}}, {{ $floor->id}}, {{ $floor->size_X}}, {{ $floor->size_Y}}, {{ $floor->zoom_level}} )">Show on map</button></td>
+                    <td><button class="btn btn-default" onclick="location.href='/beacons/{{ $floor->id}}';">Edit beacons</button></td>
+
                 </tr>
                 @endforeach
             </table>
