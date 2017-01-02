@@ -25,14 +25,14 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-
+<!--
             <li id="beacons">
                 <a href="{{ URL::asset('beacons') }}">
                     <i class="ion ion-social-rss"></i>
                     <span>Beacon management</span>
                 </a>
             </li>
-
+-->
             <li id="garages">
                 <a href="{{ URL::asset('garages') }}">
                     <i class="ion ion-social-buffer"></i>

@@ -46,7 +46,7 @@
             </div>
 
             <div class="col-md-12">
-                <button class="btn btn-default" onclick="location.href='/addGarage';">Add new</button>
+                <button class="btn btn-success" onclick="location.href='/addGarage';">Add new</button>
             </div>
 
         </div>
