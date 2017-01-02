@@ -31,9 +31,6 @@
 
                         <!-- User image -->
                         <li class="user-header">
-                            <!--
-                            <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                            -->
                             <p>
                                 {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
                                 <small>{{ Auth::user()->email }}</small>
