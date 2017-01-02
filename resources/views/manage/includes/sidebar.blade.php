@@ -11,7 +11,7 @@
             </div>
             -->
             <div class="pull-left info">
-                <p>Hodor</p>
+                <p>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
             </div>
         </div>
 
@@ -20,28 +20,28 @@
             <li class="header">MAIN NAVIGATION</li>
 
             <li id="dashboard">
-                <a href="dashboard">
+                <a href="{{ URL::asset('dashboard') }}">
                     <i class="fa fa-dashboard"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
 
             <li id="beacons">
-                <a href="beacons">
+                <a href="{{ URL::asset('beacons') }}">
                     <i class="ion ion-social-rss"></i>
                     <span>Beacon management</span>
                 </a>
             </li>
 
             <li id="garages">
-                <a href="garages">
+                <a href="{{ URL::asset('garages') }}">
                     <i class="ion ion-social-buffer"></i>
                     <span>Garage management</span>
                 </a>
             </li>
 
             <li id="user">
-                <a href="user">
+                <a href="{{ URL::asset('user') }}">
                     <i class="ion ion-model-s"></i>
                     <span>User management</span>
                 </a>
@@ -50,7 +50,7 @@
             <hr>
 
             <li>
-                <a href="documentation/">
+                <a href="{{ URL::asset('documentation/') }}">
                     <i class="fa fa-book"></i>
                     <span>Documentation</span>
                 </a>

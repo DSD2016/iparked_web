@@ -8,17 +8,17 @@
     <title>iParked | Dashboard</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="admin/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="admin/css/_all-skins.min.css">
-    <link rel="stylesheet" href="admin/plugins/iCheck/flat/blue.css">
-    <link rel="stylesheet" href="admin/plugins/morris/morris.css">
-    <link rel="stylesheet" href="admin/plugins/datepicker/datepicker3.css">
-    <link rel="stylesheet" href="admin/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
-    <link rel="stylesheet" href="admin/plugins/daterangepicker/daterangepicker.css">
-    <link rel="stylesheet" href="admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ URL::asset('https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('admin/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('admin/css/_all-skins.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('admin/plugins/iCheck/flat/blue.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('admin/plugins/morris/morris.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('admin/plugins/datepicker/datepicker3.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('admin/plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('admin/plugins/daterangepicker/daterangepicker.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
 </head>
 
@@ -42,34 +42,36 @@
 
     </div>
 
-
-    <!-- Javascript -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+     <!-- Javascript -->
+    
+    <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
+    <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ URL::asset('https://code.jquery.com/ui/1.11.4/jquery-ui.min.js') }}"></script>
 
     <script>
         $.widget.bridge('uibutton', $.ui.button);
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script src="{{ URL::asset('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-
+    
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgz9aJOkaTpIOhE-7WL8-_vQy1NxHbyOI&libraries=places"></script>
 
-    <script src="admin/plugins/morris/morris.min.js"></script>
-    <script src="admin/plugins/sparkline/jquery.sparkline.min.js"></script>
-    <script src="admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="admin/plugins/knob/jquery.knob.js"></script>
-    <script src="admin/plugins/daterangepicker/daterangepicker.js"></script>
-    <script src="admin/plugins/datepicker/bootstrap-datepicker.js"></script>
-    <script src="admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-    <script src="admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <script src="admin/plugins/fastclick/fastclick.js"></script>
-    <script src="admin/js/app.min.js"></script>
-    <script src="admin/js/dashboard.js"></script>
-    <script src="admin/js/demo.js"></script>
+    <script src="{{ URL::asset('admin/plugins/morris/morris.min.js') }}"></script>
+    <script src="{{ URL::asset('admin/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
+    <script src="{{ URL::asset('admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
+    <script src="{{ URL::asset('admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+    <script src="{{ URL::asset('admin/plugins/knob/jquery.knob.js') }}"></script>
+    <script src="{{ URL::asset('admin/plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ URL::asset('admin/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ URL::asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
+    <script src="{{ URL::asset('admin/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ URL::asset('admin/plugins/fastclick/fastclick.js') }}"></script>
+    <script src="{{ URL::asset('admin/js/app.min.js') }}"></script>
+    <script src="{{ URL::asset('admin/js/dashboard.js') }}"></script>
+    <script src="{{ URL::asset('admin/js/demo.js') }}"></script>
+
+
 
     <script>
         var current_location = window.location.pathname.substring(1);
@@ -77,66 +79,8 @@
         $('.sidebar-menu #' + current_location).addClass('active');
     </script>
 
-    <script>
-        var map = new google.maps.Map(document.getElementById('map-canvas'),{
-            center:{
-                lat: 45.800703,
-                lng: 15.971208
-            },
-            zoom: 20,
-        });
+    @yield('scripts')  
 
-        google.maps.event.addListener(map, 'click', function(e) {
-            placeMarkerAndPanTo(e.latLng, map);
-        });
-
-        google.maps.event.addListener(marker, "dragend", function(e) {
-            var lat = e.latLng.lat();
-            var lng = e.latLng.lng();
-            $('#Lat').val(lat);
-            $('#Lng').val(lng);
-        });
-
-        google.maps.event.addListener(marker, 'position_changed', function(){
-            var lat = marker.getPosition().lat();
-            var lng = marker.getPosition().lng();
-            $('#Lat').val(lat);
-            $('#Lng').val(lng);
-        });
-
-        function placeMarkerAndPanTo(latLng, map) {
-            var marker = new google.maps.Marker({
-            position: latLng,
-            map: map
-            });
-            map.panTo(latLng);
-            var lat = marker.getPosition().lat();
-            var lng = marker.getPosition().lng();
-            $('#Lat').val(lat);
-            $('#Lng').val(lng);
-        }
-
-        $(document).on('submit', '#beacons-add', function(e) {
-            e.preventDefault();
-
-            console.log("SUBMIT");
-
-            $.ajax({
-                method: $(this).attr('method'),
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType: "json"
-            })
-
-            .done(function(data) {
-                window.open('/beacons','_self')
-            })
-
-            .fail(function(data) {
-            });
-        });
-
-    </script>
 
 </body>
 

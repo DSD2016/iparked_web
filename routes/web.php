@@ -35,13 +35,33 @@ Route::group(['middleware' => ['auth']], function() {
         return View::make('manage.dashboard');
     });
 
-    Route::get('garages/', function () {
-        return View::make('manage.garages');
+    Route::get('garages/', 'GaragesController@show');
+
+    Route::get('addGarage/', function () {
+        return View::make('manage.addGarage');
     });
 
-    Route::get('beacons/', function () {
-        return View::make('manage.beacons');
+    Route::post('/garage-store', [
+        'uses' => 'GaragesController@store',
+        'as' => 'garage-store'
+    ]);
+
+    Route::get('floors/{garageId}', 'FloorsController@show');
+
+    Route::get('addFloor/{garageId}', function ($garageId) {
+        return view('manage.addFloor',['garageId' => $garageId ]);
     });
+    Route::post('/floor-store/{garageId}', [
+        'uses' => 'FloorsController@store',
+        'as' => 'floor-store'
+    ]);
+
+    Route::get('beacons/{garageId}', 'BeaconController@show');
+    
+    Route::post('/beacons-store', [
+        'uses' => 'BeaconController@store',
+        'as' => 'beacons-store'
+    ]);
 
     Route::get('user/', function () {
         return View::make('manage.user');
@@ -51,12 +71,5 @@ Route::group(['middleware' => ['auth']], function() {
         'uses' => 'Auth\LoginController@getLogout',
         'as' => 'logout'
     ]);
-
-    Route::post('/beacons-store', [
-        'uses' => 'BeaconController@store',
-        'as' => 'beacons-store'
-    ]);
-
-    //Route::post('storebeacon', 'BeaconController');
 
 });
