@@ -18,7 +18,7 @@ class BeaconController extends Controller
             'bluetooth_address' => $request->input('bluetooth_address'),
         ]);
 
-        return redirect()->back();
+        return response()->json(['result' => 'Success']);
     }
     public function show (Request $request, $floorId){
         

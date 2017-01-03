@@ -15,7 +15,6 @@
 
     <!-- Main content -->
     <section class="content">
-        <div id="map-canvas" class="col-md-8" style="height: 70vh;"></div>
 
         <div class="col-md-4">
 
@@ -53,6 +52,7 @@
 
                             <div>
                                 <button type="submit" class="btn btn-default" style="width: 40%;">Add</button>
+                                <p id="infoText">Ready!</p>
                             </div>
 
 
@@ -63,6 +63,8 @@
             </div>
 
         </div >
+
+         <div id="map-canvas" class="col-md-8" style="height: 70vh;"></div>
 
     </section>
     <!-- /.content -->
@@ -89,17 +91,20 @@
         beaconMarkers.push( new google.maps.Marker({position: myLatLng, map: map, title: beacons[i]['name']}) );
     }
 
-    var newBeaconMarker = new google.maps.Marker({draggable:true, title: 'New beacon'});
+    var newBeaconMarker = new google.maps.Marker({icon: "{{ URL::asset('img/beaconMarkerIcon.png') }}", draggable:true});
 
-    console.log(newBeaconMarker);
     
-    google.maps.event.addListener(map, 'click', function(e) {
-        console.log(newBeaconMarker);
+    google.maps.event.addListener(map, 'click', function(e) {        
         newBeaconMarker.setPosition(e.latLng);
         newBeaconMarker.setMap(map);
+        google.maps.event.addListener(newBeaconMarker, 'dragend', function(e){
+            $('#lat').val(e.latLng.lat());
+            $('#lng').val(e.latLng.lng());
+        });
         $('#lat').val(e.latLng.lat());
         $('#lng').val(e.latLng.lng());
     });
+
 
     map.data.addListener('click',function(e){
      google.maps.event.trigger(this.getMap(),'click',e);
@@ -145,6 +150,8 @@
 
     $('#beacons-add').submit(function(e) {
         e.preventDefault();
+        $('#infoText').text("Adding beacon.....");
+        $('input:submit').attr("disabled", true);
         $.ajax({
             type: 'POST',
             url: '/beacons-store/'+floor[0]['id'],
@@ -156,7 +163,17 @@
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (data) {
-                console.log("Added beacon")
+                console.log(data);
+                $('#beacons-add')[0].reset();
+                $('#infoText').text("Beacon added successfuly!");
+                setTimeout(function() {
+                    $('#infoText').text("Ready!");
+                    $('input:submit').attr("disabled", false);
+                }, 1000);
+                newBeaconMarker.setIcon(null);
+                newBeaconMarker.setDraggable(false);
+                beaconMarkers.push(newBeaconMarker);
+                newBeaconMarker = new google.maps.Marker({icon: "{{ URL::asset('img/beaconMarkerIcon.png') }}", draggable:true});
             },
         });
     });
