@@ -57,9 +57,10 @@ Route::group(['middleware' => ['auth']], function() {
         'as' => 'floor-store'
     ]);
 
-    Route::get('beacons/{garageId}', 'BeaconController@show');
 
-    Route::post('/beacons-store', [
+    Route::get('beacons/{floorId}', 'BeaconController@show');
+
+    Route::post('/beacons-store/{floorId}', [
         'uses' => 'BeaconController@store',
         'as' => 'beacons-store'
     ]);

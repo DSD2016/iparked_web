@@ -7,17 +7,18 @@ use Illuminate\Support\Facades\DB;
 
 class BeaconController extends Controller
 {
-    public function store (Request $request){
+    public function store (Request $request, $floorId){
+
         DB::table('beacons')->insert([
-            'floor_id' => 1,
+            'floor_id' => $floorId,
             'name' => $request->input('beacon_name'),
             'latitude' => $request->input('beacon_lat'),
             'longitude' => $request->input('beacon_lng'),
             'minor_number' => $request->input('beacon_minor'),
-            'bluetooth_adress' => 'A2:12:12:12:12:12',
+            'bluetooth_address' => $request->input('bluetooth_address'),
         ]);
 
-        return redirect()->back();
+        return response()->json(['result' => 'Success']);
     }
     public function show (Request $request, $floorId){
         

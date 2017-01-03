@@ -15,7 +15,6 @@
 
     <!-- Main content -->
     <section class="content">
-        <div id="map-canvas" class="col-md-8" style="height: 70vh;"></div>
 
         <div class="col-md-4">
 
@@ -36,15 +35,15 @@
                             <input type="hidden" name="api_token" value="{{ Auth::user()->api_token }}">
 
                             <div class="col-md-12" style="padding-bottom: 10px;">
-                                <input class="form-control" type="text" name="floor_name" placeholder="Floor name">
+                                <input class="form-control" type="text" name="floor_name" placeholder="Floor name" required>
                             </div>
 
                             <div class="col-md-6" style="padding-bottom: 10px;">
-                                <input class="form-control" type="number" name="floor_major" placeholder="Major number">
+                                <input class="form-control" type="number" name="floor_major" placeholder="Major number" required>
                             </div>
 
                             <div class="col-md-6" style="padding-bottom: 10px;">
-                                <input class="form-control" type="number" name="floor_cap" placeholder="Floor capacity">
+                                <input class="form-control" type="number" name="floor_cap" placeholder="Floor capacity" required>
                             </div>
 
                             <div class="col-md-6" style="padding-bottom: 10px;">
@@ -92,6 +91,9 @@
             </div>
 
         </div >
+
+        <div id="map-canvas" class="col-md-8" style="height: 70vh;"></div>
+
     </section>
     <!-- /.content -->
 
@@ -117,12 +119,20 @@
             });
         }
         var i = 0;
+        var floorRectangle = new google.maps.Polygon({
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#FF0000',
+                fillOpacity: 0.35
+            });
         var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
         
-        var icons = [   iconBase + 'parking_lot_maps.png',
-                        iconBase + 'library_maps.png',
-                        iconBase + 'info-i_maps.png',
-                        'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'];
+        var icons = [   new google.maps.MarkerImage("{{ URL::asset('img/NWMarker.png') }}",new google.maps.Size(30, 30),new google.maps.Point(2, 0),new google.maps.Point(2, 2)),
+                        new google.maps.MarkerImage("{{ URL::asset('img/SWMarker.png') }}",new google.maps.Size(30, 30),new google.maps.Point(2, 0),new google.maps.Point(0, 23)),
+                        new google.maps.MarkerImage("{{ URL::asset('img/SEMarker.png') }}",new google.maps.Size(30, 30),new google.maps.Point(2, 0),new google.maps.Point(23, 25)),
+                        new google.maps.MarkerImage("{{ URL::asset('img/NEMarker.png') }}",new google.maps.Size(30, 30),new google.maps.Point(2, 0),new google.maps.Point(25, 2))
+                    ];
 
         var markers = [ new google.maps.Marker({icon: icons[0], draggable:true, title: 'North West'}),
                         new google.maps.Marker({icon: icons[1], draggable:true, title: 'South West'}),
@@ -140,6 +150,7 @@
 
         function calculateFloorPlanParameters() {
 
+            drawRectangle();
             var dis1 = calculateDistance(markers[3].getPosition().lat(), markers[3].getPosition().lng(),
                                 markers[0].getPosition().lat(), markers[0].getPosition().lng());
 
@@ -155,6 +166,18 @@
 
 
            
+        }
+
+        function drawRectangle() {
+            var floorCoords = [
+                  {lat: markers[0].getPosition().lat(), lng: markers[0].getPosition().lng()},
+                  {lat: markers[1].getPosition().lat(), lng: markers[1].getPosition().lng()},
+                  {lat: markers[2].getPosition().lat(), lng: markers[2].getPosition().lng()},
+                  {lat: markers[3].getPosition().lat(), lng: markers[3].getPosition().lng()},
+                  {lat: markers[0].getPosition().lat(), lng: markers[0].getPosition().lng()}
+                ];
+            floorRectangle.setPath(floorCoords);
+            floorRectangle.setMap(map);
         }
 
         function calculateDistance(lat1, lon1, lat2, lon2){
@@ -204,7 +227,7 @@
                 formData.set('id', Number(data.floorId) );
                 $.ajax({
                     type: 'POST',
-                    url: 'http://iparked-api.sytes.net/api/floorplan',
+                    url: 'http://iparked-api.sytes.net/api/floorplan', //  iparked_api.dev iparked-api.sytes.net
                     dataType : "json",
                     data: formData,
                     processData: false,
