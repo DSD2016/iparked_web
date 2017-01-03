@@ -36,15 +36,15 @@
                             <input type="hidden" name="api_token" value="{{ Auth::user()->api_token }}">
 
                             <div class="col-md-12" style="padding-bottom: 10px;">
-                                <input class="form-control" type="text" name="floor_name" placeholder="Floor name">
+                                <input class="form-control" type="text" name="floor_name" placeholder="Floor name" required>
                             </div>
 
                             <div class="col-md-6" style="padding-bottom: 10px;">
-                                <input class="form-control" type="number" name="floor_major" placeholder="Major number">
+                                <input class="form-control" type="number" name="floor_major" placeholder="Major number" required>
                             </div>
 
                             <div class="col-md-6" style="padding-bottom: 10px;">
-                                <input class="form-control" type="number" name="floor_cap" placeholder="Floor capacity">
+                                <input class="form-control" type="number" name="floor_cap" placeholder="Floor capacity" required>
                             </div>
 
                             <div class="col-md-6" style="padding-bottom: 10px;">
@@ -204,7 +204,7 @@
                 formData.set('id', Number(data.floorId) );
                 $.ajax({
                     type: 'POST',
-                    url: 'http://iparked-api.sytes.net/api/floorplan',
+                    url: 'http://iparked_api.dev/api/floorplan',
                     dataType : "json",
                     data: formData,
                     processData: false,
