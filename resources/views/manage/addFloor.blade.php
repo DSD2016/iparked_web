@@ -128,10 +128,10 @@
             });
         var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
         
-        var icons = [   new google.maps.MarkerImage("{{ URL::asset('img/NWMarker.png') }}",new google.maps.Size(30, 30),new google.maps.Point(2, 0),new google.maps.Point(2, 2)),
-                        new google.maps.MarkerImage("{{ URL::asset('img/SWMarker.png') }}",new google.maps.Size(30, 30),new google.maps.Point(2, 0),new google.maps.Point(0, 23)),
-                        new google.maps.MarkerImage("{{ URL::asset('img/SEMarker.png') }}",new google.maps.Size(30, 30),new google.maps.Point(2, 0),new google.maps.Point(23, 25)),
-                        new google.maps.MarkerImage("{{ URL::asset('img/NEMarker.png') }}",new google.maps.Size(30, 30),new google.maps.Point(2, 0),new google.maps.Point(25, 2))
+        var icons = [   new google.maps.MarkerImage("{{ URL::asset('img/NWmarker.png') }}",new google.maps.Size(30, 30),new google.maps.Point(2, 0),new google.maps.Point(2, 2)),
+                        new google.maps.MarkerImage("{{ URL::asset('img/SWmarker.png') }}",new google.maps.Size(30, 30),new google.maps.Point(2, 0),new google.maps.Point(0, 23)),
+                        new google.maps.MarkerImage("{{ URL::asset('img/SEmarker.png') }}",new google.maps.Size(30, 30),new google.maps.Point(2, 0),new google.maps.Point(23, 25)),
+                        new google.maps.MarkerImage("{{ URL::asset('img/NEmarker.png') }}",new google.maps.Size(30, 30),new google.maps.Point(2, 0),new google.maps.Point(25, 2))
                     ];
 
         var markers = [ new google.maps.Marker({icon: icons[0], draggable:true, title: 'North West'}),

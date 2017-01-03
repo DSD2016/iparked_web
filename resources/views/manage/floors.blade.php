@@ -32,7 +32,6 @@
                     <td>{{ $floor->major_number }}</td>
                     <td>{{ $floor->floor_timestamp }}</td>
                     <td><button class="btn btn-default" onclick="location.href='/beacons/{{ $floor->id}}';">Add beacons</button></td>
-
                 </tr>
                 @endforeach
             </table>

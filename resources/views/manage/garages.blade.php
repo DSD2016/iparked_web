@@ -38,6 +38,7 @@
                 <td>{{ $garage->city }}</td>
                 <td>{{ $garage->garage_timestamp }}</td>
                 <td><button class="btn btn-default" onclick="location.href='/floors/{{ $garage->id }}';">Show floors</button></td>
+                <td><button class="btn btn-default">Remove</button></td>
             </tr>
             @endforeach
         </table>

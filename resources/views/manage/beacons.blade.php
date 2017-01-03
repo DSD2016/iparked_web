@@ -86,9 +86,22 @@
     var floor = {!! json_encode($floor) !!};
   
     var beaconMarkers = [];
-    for(var i = 0; i < beacons.length; i++){ 
+    var i = 0;
+
+    for(i = 0; i < beacons.length; i++){ 
         myLatLng = new google.maps.LatLng(beacons[i]['latitude'], beacons[i]['longitude']);
-        beaconMarkers.push( new google.maps.Marker({position: myLatLng, map: map, title: beacons[i]['name']}) );
+        addMarker(myLatLng, i, beacons[i]['id']);
+    }
+
+    function addMarker(latLng, index, beaconId){
+
+        var i = index;
+        var marker = new google.maps.Marker({position: myLatLng, map: map});
+        beaconMarkers.push(marker);
+        beaconMarkers[i].addListener('click', function() { markerClicked(i); });
+        beaconMarkers[i].data = beaconId;
+        console.log(beaconMarkers[i]);
+
     }
 
     var newBeaconMarker = new google.maps.Marker({icon: "{{ URL::asset('img/beaconMarkerIcon.png') }}", draggable:true});
@@ -147,6 +160,9 @@
     floorOverlay.setMap(map);
     map.setZoom(zoom);
 
+    function markerClicked(index) {
+        console.log('Marker ' + index + ' has been clicked');
+    }
 
     $('#beacons-add').submit(function(e) {
         e.preventDefault();
@@ -170,10 +186,9 @@
                     $('#infoText').text("Ready!");
                     $('input:submit').attr("disabled", false);
                 }, 1000);
-                newBeaconMarker.setIcon(null);
-                newBeaconMarker.setDraggable(false);
-                beaconMarkers.push(newBeaconMarker);
-                newBeaconMarker = new google.maps.Marker({icon: "{{ URL::asset('img/beaconMarkerIcon.png') }}", draggable:true});
+                newBeaconMarker.setMap(null);
+                myLatLng = new google.maps.LatLng(newBeaconMarker.getPosition().lat(), newBeaconMarker.getPosition().lng());
+                addMarker(myLatLng, beaconMarkers.length, 80);
             },
         });
     });
