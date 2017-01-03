@@ -72,6 +72,16 @@ Route::group(['middleware' => ['auth']], function() {
         return View::make('manage.user');
     });
 
+    Route::post('/user-update', [
+        'uses' => 'UsersController@update',
+        'as' => 'user-update'
+    ]);
+
+    Route::get('/user-delete', [
+        'uses' => 'UsersController@delete',
+        'as' => 'user-delete'
+    ]);
+
     Route::get('/logout', [
         'uses' => 'Auth\LoginController@getLogout',
         'as' => 'logout'
