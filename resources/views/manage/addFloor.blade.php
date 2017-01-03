@@ -227,7 +227,7 @@
                 formData.set('id', Number(data.floorId) );
                 $.ajax({
                     type: 'POST',
-                    url: 'http://iparked_api.dev/api/floorplan',
+                    url: 'http://iparked-api.sytes.net/api/floorplan', //  iparked_api.dev iparked-api.sytes.net
                     dataType : "json",
                     data: formData,
                     processData: false,

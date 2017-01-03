@@ -143,7 +143,7 @@
         east:  lon0,
         west:  lon1
     };
-    floorOverlay = new google.maps.GroundOverlay('http://iparked-api.sytes.net/api/floorplan/'+floor[0]['id'], imageBounds, {clickable: false});
+    floorOverlay = new google.maps.GroundOverlay('http://iparked-api.sytes.net/api/floorplan/'+floor[0]['id'], imageBounds, {clickable: false});//  iparked_api.dev iparked-api.sytes.net
     floorOverlay.setMap(map);
     map.setZoom(zoom);
 
