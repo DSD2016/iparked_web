@@ -25,14 +25,14 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-
+<!--
             <li id="beacons">
                 <a href="{{ URL::asset('beacons') }}">
                     <i class="ion ion-social-rss"></i>
                     <span>Beacon management</span>
                 </a>
             </li>
-
+-->
             <li id="garages">
                 <a href="{{ URL::asset('garages') }}">
                     <i class="ion ion-social-buffer"></i>
@@ -40,10 +40,17 @@
                 </a>
             </li>
 
+            <li id="company">
+                <a href="{{ URL::asset('company') }}">
+                    <i class="ion ion-ios-people"></i>
+                    <span>Company settings</span>
+                </a>
+            </li>
+
             <li id="user">
                 <a href="{{ URL::asset('user') }}">
-                    <i class="ion ion-model-s"></i>
-                    <span>User management</span>
+                    <i class="ion ion-person"></i>
+                    <span>User settings</span>
                 </a>
             </li>
 

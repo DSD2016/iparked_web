@@ -19,7 +19,7 @@ class GaragesController extends Controller
             ->where('user_id', $userId)
             ->get();
         $garages = json_decode($garages);
-        
+
         return view('manage.garages', ['garages' => $garages]);
     }
 
