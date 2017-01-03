@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ URL::asset('admin/plugins/daterangepicker/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -43,7 +44,7 @@
     </div>
 
      <!-- Javascript -->
-    
+
     <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::asset('https://code.jquery.com/ui/1.11.4/jquery-ui.min.js') }}"></script>
@@ -54,7 +55,7 @@
 
     <script src="{{ URL::asset('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgz9aJOkaTpIOhE-7WL8-_vQy1NxHbyOI&libraries=places"></script>
 
     <script src="{{ URL::asset('admin/plugins/morris/morris.min.js') }}"></script>
@@ -70,7 +71,7 @@
     <script src="{{ URL::asset('admin/js/app.min.js') }}"></script>
     <script src="{{ URL::asset('admin/js/dashboard.js') }}"></script>
     <script src="{{ URL::asset('admin/js/demo.js') }}"></script>
-
+    <script src="{{ URL::asset('admin/js/validator.js') }}"></script>
 
 
     <script>
@@ -79,7 +80,7 @@
         $('.sidebar-menu #' + current_location).addClass('active');
     </script>
 
-    @yield('scripts')  
+    @yield('scripts')
 
 
 </body>

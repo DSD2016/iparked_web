@@ -39,12 +39,12 @@
 
                     <div class="row" style="padding-bottom: 10px;">
                         <div class="col-xs-6">
-                            <label for="pass">Password</label>
+                            <label for="password">Password</label>
                             <input class="form-control" type="password" name="password" placeholder="*Password">
                         </div>
 
                         <div class="col-xs-6">
-                            <label for="pass-confirm">Confirm Password</label>
+                            <label for="password-confirm">Confirm Password</label>
                             <input class="form-control" type="password" name="password-confirm" placeholder="*Confirm Password">
                         </div>
                     </div>

@@ -51,10 +51,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('addFloor/{garageId}', function ($garageId) {
         return view('manage.addFloor',['garageId' => $garageId ]);
     });
+
     Route::post('/floor-store/{garageId}', [
         'uses' => 'FloorsController@store',
         'as' => 'floor-store'
     ]);
+
 
     Route::get('beacons/{floorId}', 'BeaconController@show');
 
@@ -63,9 +65,23 @@ Route::group(['middleware' => ['auth']], function() {
         'as' => 'beacons-store'
     ]);
 
+    Route::get('company/', function () {
+        return View::make('manage.company');
+    });
+
     Route::get('user/', function () {
         return View::make('manage.user');
     });
+
+    Route::post('/user-update', [
+        'uses' => 'UsersController@update',
+        'as' => 'user-update'
+    ]);
+
+    Route::get('/user-delete', [
+        'uses' => 'UsersController@delete',
+        'as' => 'user-delete'
+    ]);
 
     Route::get('/logout', [
         'uses' => 'Auth\LoginController@getLogout',
