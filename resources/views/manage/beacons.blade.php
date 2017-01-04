@@ -61,7 +61,20 @@
 
                 </div>
             </div>
-
+            <div >
+                <table style="width:100%" >
+                    <tr>
+                        <th>Name</th>
+                        <th>Minor number</th>
+                        <th>Bluetooth address</th>
+                    </tr>
+                    <tr>
+                        <td id="beaconName"></th>
+                        <td id="beaconMinor"></th>
+                        <td id="bluetoothAddress"></th>
+                    </tr>
+                </table>
+            </div>
         </div >
 
          <div id="map-canvas" class="col-md-8" style="height: 70vh;"></div>
@@ -84,24 +97,13 @@
 
     var beacons = {!! json_encode($beacons) !!};
     var floor = {!! json_encode($floor) !!};
-  
+
     var beaconMarkers = [];
     var i = 0;
 
     for(i = 0; i < beacons.length; i++){ 
         myLatLng = new google.maps.LatLng(beacons[i]['latitude'], beacons[i]['longitude']);
-        addMarker(myLatLng, i, beacons[i]['id']);
-    }
-
-    function addMarker(latLng, index, beaconId){
-
-        var i = index;
-        var marker = new google.maps.Marker({position: myLatLng, map: map});
-        beaconMarkers.push(marker);
-        beaconMarkers[i].addListener('click', function() { markerClicked(i); });
-        beaconMarkers[i].data = beaconId;
-        console.log(beaconMarkers[i]);
-
+        addMarker(myLatLng, i);
     }
 
     var newBeaconMarker = new google.maps.Marker({icon: "{{ URL::asset('img/beaconMarkerIcon.png') }}", draggable:true});
@@ -160,10 +162,6 @@
     floorOverlay.setMap(map);
     map.setZoom(zoom);
 
-    function markerClicked(index) {
-        console.log('Marker ' + index + ' has been clicked');
-    }
-
     $('#beacons-add').submit(function(e) {
         e.preventDefault();
         $('#infoText').text("Adding beacon.....");
@@ -179,7 +177,7 @@
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (data) {
-                console.log(data);
+                beacons.push(data.beacon);
                 $('#beacons-add')[0].reset();
                 $('#infoText').text("Beacon added successfuly!");
                 setTimeout(function() {
@@ -188,10 +186,27 @@
                 }, 1000);
                 newBeaconMarker.setMap(null);
                 myLatLng = new google.maps.LatLng(newBeaconMarker.getPosition().lat(), newBeaconMarker.getPosition().lng());
-                addMarker(myLatLng, beaconMarkers.length, 80);
+                addMarker(myLatLng, beaconMarkers.length);
             },
         });
     });
+
+    function addMarker(latLng, index){
+
+        var i = index;
+        var marker = new google.maps.Marker({position: myLatLng, map: map});
+        beaconMarkers.push(marker);
+        beaconMarkers[i].addListener('click', function() { markerClicked(i); });
+
+    }
+
+    function markerClicked(index) {
+
+        $('#beaconName').text(beacons[index].name);
+        $('#beaconMinor').text(beacons[index].minor_number);
+        $('#bluetoothAddress').text(beacons[index].bluetooth_address);
+
+    }
    
 </script>
 

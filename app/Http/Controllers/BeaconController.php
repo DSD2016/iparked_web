@@ -18,7 +18,14 @@ class BeaconController extends Controller
             'bluetooth_address' => $request->input('bluetooth_address'),
         ]);
 
-        return response()->json(['result' => 'Success']);
+        $beacon = DB::table('beacons')
+            ->where([
+                        ['floor_id', '=', $floorId],
+                        ['minor_number', '=', $request->input('beacon_minor')],
+                    ])
+            ->first();
+
+        return response()->json(['result' => 'Success','beacon' => $beacon]);
     }
     public function show (Request $request, $floorId){
         
