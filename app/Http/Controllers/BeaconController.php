@@ -18,7 +18,14 @@ class BeaconController extends Controller
             'bluetooth_address' => $request->input('bluetooth_address'),
         ]);
 
-        return response()->json(['result' => 'Success']);
+        $beacon = DB::table('beacons')
+            ->where([
+                        ['floor_id', '=', $floorId],
+                        ['minor_number', '=', $request->input('beacon_minor')],
+                    ])
+            ->first();
+
+        return response()->json(['result' => 'Success','beacon' => $beacon]);
     }
     public function show (Request $request, $floorId){
         
@@ -33,5 +40,12 @@ class BeaconController extends Controller
         $beacons = json_decode($beacons);
 
         return view('manage.beacons', ['floor' => $floor, 'floorId' => $floorId, 'beacons' => $beacons ]);
+    }
+
+    public function remove (Request $request, $beaconId){
+
+        DB::table('beacons')->where('id', $beaconId)->delete();
+
+        return response()->json(['result' => 'Success']);
     }
 }

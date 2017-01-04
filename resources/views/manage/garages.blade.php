@@ -28,7 +28,6 @@
                         <th>City</th>
                         <th>Last edited on</th>
                     </tr>
-
                     @foreach ($garages as $garage)
                     <tr>
                         <td>{{ $garage->name }}</td>

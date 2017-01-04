@@ -23,7 +23,7 @@ class GaragesController extends Controller
         return view('manage.garages', ['garages' => $garages]);
     }
 
-     public function store (Request $request){
+    public function store (Request $request){
 
         $userId =  Auth::id();
 
@@ -41,4 +41,5 @@ class GaragesController extends Controller
         ]);
         return redirect('garages/');
     }
+
 }

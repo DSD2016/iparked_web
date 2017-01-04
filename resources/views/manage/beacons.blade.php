@@ -61,10 +61,19 @@
 
                 </div>
             </div>
-
+            <div class="row col-md-12" style="overflow: auto; height: 50vh;" >
+                <table id="beaconTable" style="width:100%" >
+                    <tr>
+                        <th>Name</th>
+                        <th>Minor number</th>
+                        <th>Bluetooth address</th>
+                    </tr>
+                    
+                </table>
+            </div>
         </div >
 
-         <div id="map-canvas" class="col-md-8" style="height: 70vh;"></div>
+        <div id="map-canvas" class="col-md-8" style="height: 80vh;"></div>
 
     </section>
     <!-- /.content -->
@@ -84,11 +93,19 @@
 
     var beacons = {!! json_encode($beacons) !!};
     var floor = {!! json_encode($floor) !!};
-  
+
     var beaconMarkers = [];
-    for(var i = 0; i < beacons.length; i++){ 
+    var i = 0;
+    var lastindex;
+
+    for(i = 0; i < beacons.length; i++){ 
         myLatLng = new google.maps.LatLng(beacons[i]['latitude'], beacons[i]['longitude']);
-        beaconMarkers.push( new google.maps.Marker({position: myLatLng, map: map, title: beacons[i]['name']}) );
+        addMarker(myLatLng, i, beacons[i].id);
+        var row = '<tr id="'+beacons[i].id+'"><td>' +  beacons[i].name
+                 + '</td><td>' +  beacons[i].minor_number 
+                 + '</td><td>' +  beacons[i].bluetooth_address + '</td><td>'
+                 +  '<button class="btn btn-default" onclick="removeBeacon('+beacons[i].id+')">Remove</button>' + '</td></tr>';
+        $('#beaconTable').append(row);
     }
 
     var newBeaconMarker = new google.maps.Marker({icon: "{{ URL::asset('img/beaconMarkerIcon.png') }}", draggable:true});
@@ -163,21 +180,75 @@
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (data) {
-                console.log(data);
+                beacons.push(data.beacon);
+                var i = beacons.length-1;
                 $('#beacons-add')[0].reset();
                 $('#infoText').text("Beacon added successfuly!");
                 setTimeout(function() {
                     $('#infoText').text("Ready!");
                     $('input:submit').attr("disabled", false);
                 }, 1000);
-                newBeaconMarker.setIcon(null);
-                newBeaconMarker.setDraggable(false);
-                beaconMarkers.push(newBeaconMarker);
-                newBeaconMarker = new google.maps.Marker({icon: "{{ URL::asset('img/beaconMarkerIcon.png') }}", draggable:true});
+                newBeaconMarker.setMap(null);
+                myLatLng = new google.maps.LatLng(newBeaconMarker.getPosition().lat(), newBeaconMarker.getPosition().lng());
+                addMarker(myLatLng, beaconMarkers.length, beacons[i].id);
+                var row = '<tr id="'+beacons[i].id+'"><td>' +  beacons[i].name
+                     + '</td><td>' +  beacons[i].minor_number 
+                     + '</td><td>' +  beacons[i].bluetooth_address + '</td><td>'
+                     +  '<button class="btn btn-default" onclick="removeBeacon('+beacons[i].id+')">Remove</button>' + '</td></tr>';
+                $('#beaconTable').append(row);
+
             },
         });
     });
-   
+
+    function addMarker(latLng, index, beaconID){
+
+        var i = index;
+        var marker = new google.maps.Marker({position: myLatLng, map: map});
+        marker.data = beaconID; 
+        beaconMarkers.push(marker);
+        beaconMarkers[i].addListener('click', function() { markerClicked(i); });
+
+    }
+
+    function markerClicked(index) {
+        $('tr', '#beaconTable').eq(lastindex).css('background-color', 'rgba(0,0,0,0.0)');
+        lastindex = index + 1;
+        $('tr', '#beaconTable').eq(lastindex).css('background-color', 'rgba(0,0,0,0.3)');
+    }
+    function removeBeacon(id) {
+       $.ajax({
+            type: 'GET',
+            url: '/beacon-remove/'+id,
+            dataType : "json",
+            cache: false,
+            
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+                
+                $('#'+id).remove();
+                removeB(id);
+            },
+        });
+    }
+    function removeB(id) {
+
+        for(var i = 0; i < beacons.length; i++ ) {
+            if(beacons[i].id == id){
+                beacons.splice(i,1);
+            }
+            if(beaconMarkers[i].data == id){
+                beaconMarkers[i].setMap(null);
+                beaconMarkers.splice(i,1);
+                break;
+            }
+        }
+        console.log(beaconMarkers);
+        console.log(beacons);
+
+    }
 </script>
 
 @stop
