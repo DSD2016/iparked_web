@@ -64,6 +64,10 @@ Route::group(['middleware' => ['auth']], function() {
         'uses' => 'BeaconController@store',
         'as' => 'beacons-store'
     ]);
+    Route::get('/beacon-remove/{floorId}', [
+        'uses' => 'BeaconController@remove',
+        'as' => 'beacon-remove'
+    ]);
 
     Route::get('company/', function () {
         return View::make('manage.company');

@@ -41,4 +41,11 @@ class BeaconController extends Controller
 
         return view('manage.beacons', ['floor' => $floor, 'floorId' => $floorId, 'beacons' => $beacons ]);
     }
+
+    public function remove (Request $request, $beaconId){
+
+        DB::table('beacons')->where('id', $beaconId)->delete();
+
+        return response()->json(['result' => 'Success']);
+    }
 }
