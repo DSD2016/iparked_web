@@ -188,8 +188,12 @@
 
             var opposite = calculateDistance(markers[1].getPosition().lat(), markers[1].getPosition().lng(),
                                               markers[2].getPosition().lat(), markers[1].getPosition().lng());
+            var angle = (Math.atan2(opposite,adjacent) * 180 / Math.PI);
 
-            var angle = Math.atan2(opposite,adjacent) * 180 / Math.PI;
+            if(markers[1].getPosition().lat() < markers[2].getPosition().lat()){
+                angle = 360 - angle;
+            }
+            
 
             $('#lat').val(middlePoint[0]);
             $('#lng').val(middlePoint[1]);
