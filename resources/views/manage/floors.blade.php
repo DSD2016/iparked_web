@@ -14,10 +14,11 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <table style="width:100%">
                 <tr>
                     <th>Name</th>
+                    <th>Floor number</th>
                     <th>Latitude</th> 
                     <th>Longitude</th>
                     <th>Major number</th>
@@ -27,11 +28,13 @@
                 @foreach ($floors as $floor)
                 <tr>
                     <td>{{ $floor->name }}</td>
+                    <td>{{ $floor->floor_number }}</td>
                     <td>{{ $floor->latitude }}</td> 
                     <td>{{ $floor->longitude}}</td>
                     <td>{{ $floor->major_number }}</td>
                     <td>{{ $floor->floor_timestamp }}</td>
                     <td><button class="btn btn-default" onclick="location.href='/beacons/{{ $floor->id}}';">Add beacons</button></td>
+                    <td><button class="btn btn-default" onclick="location.href='/editFloor/{{ $floor->id}}';">Edit Floor</button></td>
                 </tr>
                 @endforeach
             </table>
