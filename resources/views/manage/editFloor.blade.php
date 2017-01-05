@@ -75,14 +75,14 @@
 
                             <input type="hidden" name="floor_plan" value="0.0">
 
-                            <input class="form-control" name="latitude1" value="{{ $floor->latitude1 }}" required>
-                            <input class="form-control" name="longitude1" value="{{ $floor->longitude1 }}" required>
-                            <input class="form-control" name="latitude2" value="{{ $floor->latitude2 }}" required>
-                            <input class="form-control" name="longitude2" value="{{ $floor->longitude2 }}" required>
-                            <input class="form-control" name="latitude3" value="{{ $floor->latitude3 }}" required>
-                            <input class="form-control" name="longitude3" value="{{ $floor->longitude3 }}" required>
-                            <input class="form-control" name="latitude4" value="{{ $floor->latitude4 }}" required>
-                            <input class="form-control" name="longitude4" value="{{ $floor->longitude4 }}" required>
+                            <input type="hidden" name="latitude1" value="{{ $floor->latitude1 }}" required>
+                            <input type="hidden" name="longitude1" value="{{ $floor->longitude1 }}" required>
+                            <input type="hidden" name="latitude2" value="{{ $floor->latitude2 }}" required>
+                            <input type="hidden" name="longitude2" value="{{ $floor->longitude2 }}" required>
+                            <input type="hidden" name="latitude3" value="{{ $floor->latitude3 }}" required>
+                            <input type="hidden" name="longitude3" value="{{ $floor->longitude3 }}" required>
+                            <input type="hidden" name="latitude4" value="{{ $floor->latitude4 }}" required>
+                            <input type="hidden" name="longitude4" value="{{ $floor->longitude4 }}" required>
 
                             <input type="hidden" name="id" >
 
@@ -139,10 +139,10 @@
         var LatLng4 = {lat: {{ $floor->latitude4 }}, lng: {{ $floor->longitude4 }}};
 
         var floorRectangle = new google.maps.Polygon({
-                strokeColor: '#FF0000',
+                strokeColor: '#00BFFF',
                 strokeOpacity: 0.8,
                 strokeWeight: 2,
-                fillColor: '#FF0000',
+                fillColor: '#00BFFF',
                 fillOpacity: 0.35
             });
         floorRectangle.setPath([LatLng1, LatLng2, LatLng3, LatLng4, LatLng1]);
@@ -176,24 +176,35 @@
         function calculateFloorPlanParameters() {
 
             drawRectangle();
-            var dis1 = calculateDistance(markers[3].getPosition().lat(), markers[3].getPosition().lng(),
-                                markers[0].getPosition().lat(), markers[0].getPosition().lng());
 
-            var dis2 = calculateDistance(markers[1].getPosition().lat(), markers[1].getPosition().lng(),
-                                markers[0].getPosition().lat(), markers[0].getPosition().lng());
+            var distanceX = calculateDistance(markers[0].getPosition().lat(), markers[0].getPosition().lng(),
+                                              markers[3].getPosition().lat(), markers[3].getPosition().lng());
 
-            $('#lat').val(dis2[3]);
-            $('#lng').val(dis1[4]);
-            $('#angle').val(dis1[2]);
-            $('#sizex').val(dis2[0]);
-            $('#sizey').val(dis1[1]);
+            var distanceY = calculateDistance(markers[0].getPosition().lat(), markers[0].getPosition().lng(),
+                                              markers[1].getPosition().lat(), markers[1].getPosition().lng());
+
+            var middlePoint = midPoint (markers[0].getPosition().lat(), markers[0].getPosition().lng(),
+                                        markers[2].getPosition().lat(), markers[2].getPosition().lng());
+
+            var adjacent = calculateDistance(markers[1].getPosition().lat(), markers[1].getPosition().lng(),
+                                              markers[1].getPosition().lat(), markers[2].getPosition().lng());
+
+            var opposite = calculateDistance(markers[1].getPosition().lat(), markers[1].getPosition().lng(),
+                                              markers[2].getPosition().lat(), markers[1].getPosition().lng());
+
+            var angle = Math.atan2(opposite,adjacent) * 180 / Math.PI;
+
+            $('#lat').val(middlePoint[0]);
+            $('#lng').val(middlePoint[1]);
+            $('#angle').val(angle);
+            $('#sizex').val(distanceX);
+            $('#sizey').val(distanceY);
             $('#zoom').val(map.getZoom());
-
-
            
         }
 
         function drawRectangle() {
+
             var floorCoords = [
                   {lat: markers[0].getPosition().lat(), lng: markers[0].getPosition().lng()},
                   {lat: markers[1].getPosition().lat(), lng: markers[1].getPosition().lng()},
@@ -214,6 +225,7 @@
             $( "input[name='longitude4']" ).val( markers[3].getPosition().lng() );
             floorRectangle.setPath(floorCoords);
             floorRectangle.setMap(map);
+
         }
 
         function calculateDistance(lat1, lon1, lat2, lon2){
@@ -223,18 +235,32 @@
             var dLat = lat2 * Math.PI / 180 - lat1 * Math.PI / 180;
             var dLon = lon2 * Math.PI / 180 - lon1 * Math.PI / 180;
 
-            var a1 = Math.sin(dLat/2) * Math.sin(dLat/2);
+            var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);
 
-            var a2 = Math.cos(lat1 * Math.PI / 180) * Math.cos(lat1 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            var d = R * c;
 
-            var c1 = 2 * Math.atan2(Math.sqrt(a1), Math.sqrt(1-a1));
-            var c2 = 2 * Math.atan2(Math.sqrt(a2), Math.sqrt(1-a2));
-            var d1 = R * c1;
-            var d2 = R * c2;
-            var angle = Math.atan2(d1,d2)*180 / Math.PI;
-            var s1 = (lat2 + lat1)/2;
-            var s2 = (lon2 + lon1)/2;
-            return [d1,d2,angle,s1,s2];
+            return d;
+        }
+
+        function midPoint(lat1,lon1,lat2,lon2){
+
+            var dLon = (lon2 - lon1) * Math.PI / 180;
+
+            //convert to radians
+            var rlat1 = lat1 * Math.PI / 180;
+            var rlat2 = lat2 * Math.PI / 180;
+            var rlon1 = lon1 * Math.PI / 180;
+
+            var Bx = Math.cos(rlat2) * Math.cos(dLon);
+            var By = Math.cos(rlat2) * Math.sin(dLon);
+            var rlat3 = Math.atan2(Math.sin(rlat1) + Math.sin(rlat2), Math.sqrt((Math.cos(rlat1) + Bx) * (Math.cos(rlat1) + Bx) + By * By));
+            var rlon3 = rlon1 + Math.atan2(By, Math.cos(rlat1) + Bx);
+
+            var lat3 = rlat3 * 180 / Math.PI;
+            var lon3 = rlon3 * 180 / Math.PI;
+
+            return [lat3, lon3];
         }
 
     </script>

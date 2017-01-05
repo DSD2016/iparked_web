@@ -128,37 +128,16 @@
    });
 
 
-    var lat = floor[0]['latitude'];
-    var lng = floor[0]['longitude'];
-    var height = floor[0]['size_X'];
-    var width = floor[0]['size_Y'];
     var zoom = floor[0]['zoom_level'];
-    map.setCenter(new google.maps.LatLng(lat, lng));
+    map.setCenter(new google.maps.LatLng(floor[0]['latitude'], floor[0]['longitude']));
     
     //Earth’s radius, sphere
-    var R = 6378137;
-    var Pi = 3.14159265359;
-
-     //offsets in meters
-    var dn = height/2.0;
-    var de = width/2.0;
-
-     //Coordinate offsets in radians
-    var dLat = ((dn*180)/R)/Pi;
-    var dLon = ((de*180)/(R*Math.cos((Pi*lat)/180.0))) / Pi;
-
-     //OffsetPosition, decimal degrees
-    var lat0 = lat + dLat;
-    var lon0 = lng + dLon;
-
-    var lat1 = lat - dLat;
-    var lon1 = lng - dLon;
 
     var imageBounds = {
-        north: lat0,
-        south: lat1,
-        east:  lon0,
-        west:  lon1
+        north: floor[0]['latitude4'],
+        south: floor[0]['latitude2'],
+        east:  floor[0]['longitude4'],
+        west:  floor[0]['longitude2']
     };
     floorOverlay = new google.maps.GroundOverlay('http://iparked-api.sytes.net/api/floorplan/'+floor[0]['id'], imageBounds, {clickable: false});//  iparked_api.dev iparked-api.sytes.net
     floorOverlay.setMap(map);
@@ -245,8 +224,6 @@
                 break;
             }
         }
-        console.log(beaconMarkers);
-        console.log(beacons);
 
     }
 </script>
