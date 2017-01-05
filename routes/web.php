@@ -51,10 +51,19 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('addFloor/{garageId}', function ($garageId) {
         return view('manage.addFloor',['garageId' => $garageId ]);
     });
+    Route::get('editFloor/{floorId}',[
+        'uses' => 'FloorsController@edit',
+        'as' => 'floor-edit'
+    ]);
 
     Route::post('/floor-store/{garageId}', [
         'uses' => 'FloorsController@store',
         'as' => 'floor-store'
+    ]);
+
+    Route::post('/floor-update/{floorId}', [
+        'uses' => 'FloorsController@update',
+        'as' => 'floor-update'
     ]);
 
 

@@ -24,6 +24,17 @@ class BeaconController extends Controller
                         ['minor_number', '=', $request->input('beacon_minor')],
                     ])
             ->first();
+        $floor = DB::table('floors')
+            ->where('id', '=', $floorId)
+            ->first();
+
+        DB::table('floors')
+            ->where('id', '=', $floorId)
+            ->update(['floor_timestamp' => date("Y-m-d h:i:s", time())]);
+
+        DB::table('garages')
+            ->where('id', '=', $floor->garage_id)
+            ->update(['garage_timestamp' => date("Y-m-d h:i:s", time())]);
 
         return response()->json(['result' => 'Success','beacon' => $beacon]);
     }
@@ -43,6 +54,22 @@ class BeaconController extends Controller
     }
 
     public function remove (Request $request, $beaconId){
+
+        $beacon = DB::table('beacons')
+            ->where('id', '=', $beaconId)
+            ->first();
+
+        $floor = DB::table('floors')
+            ->where('id', '=', $beacon->floor_id)
+            ->first();
+
+        DB::table('floors')
+            ->where('id', '=', $beacon->floor_id)
+            ->update(['floor_timestamp' => date("Y-m-d h:i:s", time())]);
+
+        DB::table('garages')
+            ->where('id', '=', $floor->garage_id)
+            ->update(['garage_timestamp' => date("Y-m-d h:i:s", time())]);
 
         DB::table('beacons')->where('id', $beaconId)->delete();
 
