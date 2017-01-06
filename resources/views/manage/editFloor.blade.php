@@ -28,7 +28,7 @@
 
                     <div class="small-box-footer" style="padding-top: 10px;">
 
-                        <form id="floor" class="form-horizontal" role="form" action="/floor-edit/{{ $floor->id }}" method="post">
+                        <form id="floor-edit" class="form-horizontal" role="form" action="/floor-edit/{{ $floor->id }}" method="post">
 
                             <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -100,6 +100,26 @@
 
                         </form>
                     </div>
+
+
+                    <div class="small-box-footer" style="padding-top: 10px;">
+
+                        <form id="floor-remove" class="form-horizontal" role="form" action="/floor-remove/{{ $floor->id }}" method="post">
+
+                            <meta name="csrf-token" content="{{ csrf_token() }}">
+
+                            <input type="hidden" name="api_token" value="{{ Auth::user()->api_token }}">
+
+                            <input type="hidden" name="id" value="{{ $floor->id }}" >
+
+                            <div>
+                                <button type="submit" class="btn btn-default" style="width: 40%;">Remove</button>
+                            </div>
+
+
+                        </form>
+                    </div>
+
 
                 </div>
             </div>
@@ -269,16 +289,16 @@
 
     </script>
 <script>
-    $('#floor').submit(function(e) {
+    $('#floor-edit').submit(function(e) {
        
         e.preventDefault();
-        var formData =  new FormData($("#floor")[0]);
+        var formData =  new FormData($("#floor-edit")[0]);
         formData.set('zoom_level', map.getZoom());
         $.ajax({
             type: 'POST',
             url: '/floor-update/{{ $floor->id }}',
             dataType : "json",
-            data: $('#floor').serialize(),
+            data: $('#floor-edit').serialize(),
             cache: false,
             
             headers: {
@@ -302,6 +322,35 @@
                     console.log("nema Slike");
                     window.location.replace("/floors/{{ $floor->garage_id }}");
                 }
+            },
+        });
+    });
+    $('#floor-remove').submit(function(e) {
+       
+        e.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: '/floor-remove/{{ $floor->id }}',
+            dataType : "json",
+            data: $('#floor-remove').serialize(),
+            cache: false,
+            
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+
+                 $.ajax({
+                        type: 'POST',
+                        url: 'http://iparked-api.sytes.net/api/removefloorplan', //  iparked_api.dev iparked-api.sytes.net
+                        dataType : "json",
+                        data: $('#floor-remove').serialize(),
+                        cache: false,
+                        success: function (data) {
+                            window.location.replace("/floors/{{ $floor->garage_id }}");
+                        },
+                    });    
             },
         });
     });
