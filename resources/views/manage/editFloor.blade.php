@@ -331,22 +331,23 @@
 
         $.ajax({
             type: 'POST',
-            url: '/floor-remove/{{ $floor->id }}',
+            url: 'http://iparked-api.sytes.net/api/removefloorplan', //  iparked_api.dev iparked-api.sytes.net
             dataType : "json",
             data: $('#floor-remove').serialize(),
             cache: false,
-            
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (data) {
-
                  $.ajax({
                         type: 'POST',
-                        url: 'http://iparked-api.sytes.net/api/removefloorplan', //  iparked_api.dev iparked-api.sytes.net
+                        url: '/floor-remove/{{ $floor->id }}',
                         dataType : "json",
                         data: $('#floor-remove').serialize(),
                         cache: false,
+                        headers: {
+                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
                         success: function (data) {
                             window.location.replace("/floors/{{ $floor->garage_id }}");
                         },
