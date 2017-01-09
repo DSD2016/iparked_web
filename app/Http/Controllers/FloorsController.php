@@ -96,4 +96,14 @@ class FloorsController extends Controller
 
         return view('manage.editFloor', ['floor' => $floor]);
     }
+
+     public function remove (Request $request, $floorId){
+
+
+        DB::table('beacons')->where('floor_id',$floorId)->delete();
+        DB::table('floors')->where('id', $floorId)->delete();
+    
+
+        return response()->json(['floorId' => $floorId]);
+    }
 }

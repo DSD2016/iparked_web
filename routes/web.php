@@ -65,6 +65,10 @@ Route::group(['middleware' => ['auth']], function() {
         'uses' => 'FloorsController@update',
         'as' => 'floor-update'
     ]);
+    Route::post('/floor-remove/{floorId}', [
+        'uses' => 'FloorsController@remove',
+        'as' => 'floor-remove'
+    ]);
 
 
     Route::get('beacons/{floorId}', 'BeaconController@show');
