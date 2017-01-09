@@ -335,9 +335,6 @@
             dataType : "json",
             data: $('#floor-remove').serialize(),
             cache: false,
-            headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
             success: function (data) {
                  $.ajax({
                         type: 'POST',
