@@ -71,7 +71,6 @@ class FloorsController extends Controller
             'size_X' => $request->input('size_X'),
             'size_Y' => $request->input('size_Y'),
             'zoom_level' => $request->input('zoom_level'),
-            'floor_plan' => $request->input('floor_plan'),
             'floor_timestamp' => date("Y-m-d h:i:s", time()),
             'latitude1' => $request->input('latitude1'),
             'longitude1' => $request->input('longitude1'),

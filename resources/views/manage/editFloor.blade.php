@@ -73,8 +73,6 @@
                                 <input class="form-control" type="text" name="zoom_level" value="{{ $floor->zoom_level }}" placeholder="Zoom Level" id="zoom" readonly required>
                             </div>
 
-                            <input type="hidden" name="floor_plan" value="0.0">
-
                             <input type="hidden" name="latitude1" value="{{ $floor->latitude1 }}" required>
                             <input type="hidden" name="longitude1" value="{{ $floor->longitude1 }}" required>
                             <input type="hidden" name="latitude2" value="{{ $floor->latitude2 }}" required>
