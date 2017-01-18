@@ -24,6 +24,7 @@ class RegisterController extends Controller {
         $user->last_name = $last_name;
         $user->email = $email;
         $user->password = $password;
+        $user->api_token = str_random(64);
         $user->activated = 0;
         $user->company = 'as';
         $user->save();
